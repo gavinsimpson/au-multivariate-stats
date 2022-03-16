@@ -1,6 +1,8 @@
 # Multivariate analysis of biological data using R
 
-### Aarhus University PhD Course 
+### Aarhus University PhD Course
+
+### September 19<sup>th</sup> &ndash; 23<sup>rd</sup> 
 
 ## Objectives of the course
 
