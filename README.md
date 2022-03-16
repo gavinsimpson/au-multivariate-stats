@@ -2,7 +2,7 @@
 
 ### Aarhus University PhD Course
 
-### September 19<sup>th</sup> &ndash; 23<sup>rd</sup> 
+* 2022 version: September 19<sup>th</sup> &ndash; 23<sup>rd</sup> 
 
 ## Objectives of the course
 
