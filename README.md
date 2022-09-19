@@ -8,6 +8,10 @@
 
 * [Monday](https://gavinsimpson.github.io/au-multivariate-stats/slides/01-dissimilarity-clustering-diversity/slides.html)
 
+### Computing
+
+* [Monday](https://gavinsimpson.github.io/au-multivariate-stats/computing/01-clustering-analysis/cluster-analysis.html)
+
 ## Objectives of the course
 
 The aim of the course is to provide an introduction to the analysis of multivariate data arising from observation and experimental studies with the R statistical software.
