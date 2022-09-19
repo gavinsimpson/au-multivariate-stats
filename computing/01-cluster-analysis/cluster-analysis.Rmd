@@ -346,7 +346,7 @@ plotted points to identify them, end with a right click):
 ```{r}
 ponds.pca <- prcomp(pondsenv)
 screeplot(ponds.pca)
-ponds.pred <- predict(ponds.pca)
+ponds.pred <- predict(ponds.pca, newdata = pondsenv)
 dimnames(ponds.km$centers)[[2]] <- dimnames(pondsenv)[[2]]
 pond.kmcenters <- predict(ponds.pca, ponds.km$centers)
 eqscplot(ponds.pred[, 1:2], type = "n", xlab = "First principal component",
