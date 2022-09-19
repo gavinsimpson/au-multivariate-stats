@@ -31,8 +31,7 @@ until all samples are in a single cluster. A variety of measures of similarity
 can a range of different ways in which the clusters are fused (e.g. single
 link, group average link, minimum variance method).
 
-The functions `hclust()` (in package
-`mva`) and `agnes()` (in package `cluster`) are the two standard functions for
+The functions `hclust()`, and `agnes()` (in package `cluster`) are the two standard functions for
 performing hierarchical agglomerative cluster analysis in R. The
 `dist()` function is used to create distance
 matrices using a variety of distance (or dissimilarity)
@@ -45,6 +44,7 @@ names(ponds)
 rownames(ponds)
 str(ponds)
 ```
+
 The `ponds` object you have just created
 contains observations on 30 ponds. Columns 1 through 48 of the
 `ponds` object contain the diatom counts of
@@ -54,7 +54,7 @@ over the period represented by the diatom surface samples.
 
 For the sake of simplicity during the remainder of the practical,
 we should subset `ponds` into a new object
-containing just the standardised water chemistry data. As it's
+containing just the standardised water chemistry data. As its
 name suggests, the `subset()` function can
 be used to return a subset of a data frame. The
 `scale()` function ca be used to center (using the
@@ -93,8 +93,7 @@ different clustering techniques are compared.
 `hclust()` performs the actual cluster
 analysis and requires a dissimilarity matrix from
 `dist()` and the clustering method to use to
-be given as arguments. The resulting
-`pond.slink` object contains the results
+be given as arguments. The resulting `pond.slink` object contains the results
 needed to produce the dendrogram of the cluster analysis, but in
 keeping with R's philosophy, only a brief summary of the object is
 presented when the object's name is entered at the prompt.
@@ -104,14 +103,12 @@ is produced using `plot()`, with the `hang` argument instructing the plot method
 to draw the labels of the nodes of the dendrogram at the baseline of the plot.
 `rect.hclust()` is used to cut the dendrogram into
 _k_ clusters (in this case 4) and then draw rectangles around the
-resulting _k_ clusters on the dendrogram. Finally, the cophenetic
-correlation is calculated, using the `cophenetic()`
-function to first generate the cophenetic distances between ponds from the
-dendrogram\footnote{The distances are stored in `coph.slink` for later
+resulting _k_ clusters on the dendrogram. Finally, the cophenetic correlation is calculated, using the `cophenetic()` function to first generate the cophenetic distances between ponds from the
+dendrogram ^[The distances are stored in `coph.slink` for later
 use. This illustrates a useful feature of the R language; namely, we do not
 need to create an object before using it with separate commands. Here, the
 `coph.slink` object is both created and used as an argument to
-`cor()` in a single line of code}, and then the
+`cor()` in a single line of code], and then the
 `cor()` function to calculate the Pearson
 product moment correlation between the original Euclidean
 distances and the cophenetic distances. The cophenetic correlation

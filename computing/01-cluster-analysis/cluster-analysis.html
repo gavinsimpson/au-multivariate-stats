@@ -372,7 +372,7 @@ pre code {
 <div id="hierarchical-agglomerative-cluster-analysis" class="section level1">
 <h1>Hierarchical agglomerative cluster analysis</h1>
 <p>Hierarchical agglomerative cluster analysis methods start with all samples in separate clusters and sequentially fuse together the two most similar clusters until all samples are in a single cluster. A variety of measures of similarity (distance) (using dissimilarity or distance coefficients) can be employed as can a range of different ways in which the clusters are fused (e.g. single link, group average link, minimum variance method).</p>
-<p>The functions <code>hclust()</code> (in package <code>mva</code>) and <code>agnes()</code> (in package <code>cluster</code>) are the two standard functions for performing hierarchical agglomerative cluster analysis in R. The <code>dist()</code> function is used to create distance matrices using a variety of distance (or dissimilarity) coefficients. First, read in the <strong>ponds</strong> data set:</p>
+<p>The functions <code>hclust()</code>, and <code>agnes()</code> (in package <code>cluster</code>) are the two standard functions for performing hierarchical agglomerative cluster analysis in R. The <code>dist()</code> function is used to create distance matrices using a variety of distance (or dissimilarity) coefficients. First, read in the <strong>ponds</strong> data set:</p>
 <pre class="r"><code>ponds_url &lt;- &quot;https://bit.ly/pondsenv&quot;
 ponds &lt;- read.csv(url(ponds_url))
 names(ponds)</code></pre>
@@ -401,7 +401,7 @@ names(ponds)</code></pre>
 ##  $ Secchid     : num  0.837 0.775 1.342 0.548 1.483 ...
 ##  $ Maxdepth    : num  1.73 1.1 1.1 1 1.41 ...</code></pre>
 <p>The <code>ponds</code> object you have just created contains observations on 30 ponds. Columns 1 through 48 of the <code>ponds</code> object contain the diatom counts of surface samples taken from each of the 30 ponds. The remaining columns contain the mean water chemistry data for each pond taken over the period represented by the diatom surface samples.</p>
-<p>For the sake of simplicity during the remainder of the practical, we should subset <code>ponds</code> into a new object containing just the standardised water chemistry data. As it’s name suggests, the <code>subset()</code> function can be used to return a subset of a data frame. The <code>scale()</code> function ca be used to center (using the <code>center</code> argument) or standardise (using the <code>scale</code> argument) the columns of a data frame or matrix.</p>
+<p>For the sake of simplicity during the remainder of the practical, we should subset <code>ponds</code> into a new object containing just the standardised water chemistry data. As its name suggests, the <code>subset()</code> function can be used to return a subset of a data frame. The <code>scale()</code> function ca be used to center (using the <code>center</code> argument) or standardise (using the <code>scale</code> argument) the columns of a data frame or matrix.</p>
 <pre class="r"><code>pondsenv &lt;- subset(ponds, select = pH:Maxdepth)
 pondsenv &lt;- scale(pondsenv, scale = TRUE, center = FALSE)</code></pre>
 <p>Using <code>subset()</code> we choose which columns to retain using the <code>select</code> argument and by stating the names of the columns. Note that we have standardised the columns of the <code>pondsenv</code> object (dividing the values in each column by the standard deviation of the values in that column) but we have not centered (i.e. subtracted the column mean from each value in that column) these data. We now proceed to perform a nearest neighbour clustering of the <code>pondsenv</code> data,</p>
@@ -422,7 +422,7 @@ rect.hclust(pond.slink, k = 4, border = &quot;red&quot;)</code></pre>
 <pre class="r"><code>cor(coph.slink &lt;- cophenetic(pond.slink), env.ed)</code></pre>
 <pre><code>## [1] 0.5318913</code></pre>
 <p>In the first line, <code>dist()</code> is used to create a Euclidean distance matrix and store it in <code>env.ed</code> for use later in the practical when different clustering techniques are compared. <code>hclust()</code> performs the actual cluster analysis and requires a dissimilarity matrix from <code>dist()</code> and the clustering method to use to be given as arguments. The resulting <code>pond.slink</code> object contains the results needed to produce the dendrogram of the cluster analysis, but in keeping with R’s philosophy, only a brief summary of the object is presented when the object’s name is entered at the prompt.</p>
-<p>The dendrogram of the cluster analysis is produced using <code>plot()</code>, with the <code>hang</code> argument instructing the plot method to draw the labels of the nodes of the dendrogram at the baseline of the plot. <code>rect.hclust()</code> is used to cut the dendrogram into <em>k</em> clusters (in this case 4) and then draw rectangles around the resulting <em>k</em> clusters on the dendrogram. Finally, the cophenetic correlation is calculated, using the <code>cophenetic()</code> function to first generate the cophenetic distances between ponds from the dendrogram, and then the <code>cor()</code> function to calculate the Pearson product moment correlation between the original Euclidean distances and the cophenetic distances. The cophenetic correlation is one measure of how well the dendrogram represents the original distance matrix and therefore, how well it represents the real distance between samples.</p>
+<p>The dendrogram of the cluster analysis is produced using <code>plot()</code>, with the <code>hang</code> argument instructing the plot method to draw the labels of the nodes of the dendrogram at the baseline of the plot. <code>rect.hclust()</code> is used to cut the dendrogram into <em>k</em> clusters (in this case 4) and then draw rectangles around the resulting <em>k</em> clusters on the dendrogram. Finally, the cophenetic correlation is calculated, using the <code>cophenetic()</code> function to first generate the cophenetic distances between ponds from the dendrogram <a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>, and then the <code>cor()</code> function to calculate the Pearson product moment correlation between the original Euclidean distances and the cophenetic distances. The cophenetic correlation is one measure of how well the dendrogram represents the original distance matrix and therefore, how well it represents the real distance between samples.</p>
 <p>An alternative way of visualising how faithfully a dendrogram represents the original dissimilarity matrix is via a Shepard-like plot. In a Shepard-like plot, the original distances (or dissimilarities) are plotted on the <em>x</em>-axis with the corresponding cophenetic distances plotted on the <em>y</em>-axis. A one to one line is drawn through the points to aid interpretation; deviations from the one to one line indicate how faithfully the original distances are represented from the dendrogram. If the dendrogram were able to fully represent the original distances, all the points would fall on the one to one line.</p>
 <pre class="r"><code>plot(env.ed, coph.slink)
 abline(a = 0, b = 1)</code></pre>
@@ -646,6 +646,12 @@ canine</code></pre>
 <pre class="r"><code>v_url &lt;- &quot;https://bit.ly/vltava-spp&quot;
 vltava &lt;- read.delim (url(v_url), row.names = 1)
 head(vltava)</code></pre>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>The distances are stored in <code>coph.slink</code> for later use. This illustrates a useful feature of the R language; namely, we do not need to create an object before using it with separate commands. Here, the <code>coph.slink</code> object is both created and used as an argument to <code>cor()</code> in a single line of code<a href="#fnref1" class="footnote-back">↩</a></p></li>
+</ol>
 </div>
 
 
