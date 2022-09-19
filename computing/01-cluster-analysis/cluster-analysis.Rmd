@@ -38,8 +38,8 @@ performing hierarchical agglomerative cluster analysis in R. The
 matrices using a variety of distance (or dissimilarity)
 coefficients. First, read in the **ponds** data set:
 ```{r}
-url <- 
-ponds <- read.csv("ponds.csv")
+ponds_url <- "https://bit.ly/pondsenv"
+ponds <- read.csv(url(ponds_url))
 names(ponds)
 rownames(ponds)
 str(ponds)
@@ -61,7 +61,7 @@ be used to return a subset of a data frame. The
 `scale` argument) the columns of a data
 frame or matrix.
 ```{r}
-pondsenv <- subset(ponds, select = pH:Maxdept)
+pondsenv <- subset(ponds, select = pH:Maxdepth)
 pondsenv <- scale(pondsenv, scale = TRUE, center = FALSE)
 ```
 Using `subset()` we choose which columns to retain using
@@ -369,11 +369,22 @@ samples. Click the left mouse button on each of the samples in the
 plot to display their sample ID. Press the right mouse button to
 finish.
 
+# Canine data
+
+```{r}
+canine <- read.csv(url("https://bit.ly/canine-data"))
+head(canine)
+rownames(canine) <- canine[, 1]
+canine <- canine[, -1]
+canine
+```
+
 # Vltava river valley forest vegatation
 
 Vegetation plots, located at even distances along transects following the steep valley slopes of Vltava river valley, collected during 2001-2003. Each transect starts at the valley bottom and ends up at the upper part of the valley slope. Altogether 97 plots located in 27 transects were collected, each of the size 10x15 m. In each plot, all tree, shrub and herb species were recorded and their abundances were estimated using 9-degree ordinal Braun-Blanquette scale (these values were consequently transformed into percentage scale).
 
-```{r}
-v_url <- ""
-vltava <- read.delim (v_url, row.names = 1)
+```{r, results = "hide"}
+v_url <- "https://bit.ly/vltava-spp"
+vltava <- read.delim (url(v_url), row.names = 1)
+head(vltava)
 ```
