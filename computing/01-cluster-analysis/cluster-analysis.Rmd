@@ -37,6 +37,7 @@ performing hierarchical agglomerative cluster analysis in R. The
 `dist()` function is used to create distance
 matrices using a variety of distance (or dissimilarity)
 coefficients. First, read in the **ponds** data set:
+
 ```{r}
 ponds_url <- "https://bit.ly/pondsenv"
 ponds <- read.csv(url(ponds_url))
@@ -60,10 +61,12 @@ be used to return a subset of a data frame. The
 `center` argument) or standardise (using the
 `scale` argument) the columns of a data
 frame or matrix.
+
 ```{r}
 pondsenv <- subset(ponds, select = pH:Maxdepth)
 pondsenv <- scale(pondsenv, scale = TRUE, center = FALSE)
 ```
+
 Using `subset()` we choose which columns to retain using
 the `select` argument and by stating the names of the
 columns. Note that we have standardised the columns of the
@@ -72,6 +75,7 @@ the standard deviation of the values in that column) but we have not centered
 (i.e. subtracted the column mean from each value in that column) these data. We
 now proceed to perform a nearest neighbour clustering of the
 `pondsenv` data,
+
 ```{r}
 env.ed <- dist(pondsenv)
 pond.slink <- hclust(env.ed, method = "single")
@@ -131,6 +135,7 @@ one to one line.
 plot(env.ed, coph.slink)
 abline(a = 0, b = 1)
 ```
+
 **What does the Shepard-like plot indicate about the
 faithfulness of the nearest neighbour dendrogram in representing
 the original Euclidean distances?**
@@ -194,6 +199,7 @@ the results of the various techniques employed. There are a number of ways in
 which this can be done. One simple way is to calculate the cophenetic
 correlation between all available clusterings of a given data-set using the
 `cor()` function.
+
 ```{r}
 cor(cbind(coph.slink, coph.clink, coph.avg, coph.wavg, coph.min, env.ed))
 ```
@@ -227,6 +233,7 @@ mem.min <- cutree(pond.min, k = 4)
 members <- cbind(mem.slink, mem.clink, mem.avg, mem.wavg, mem.min)
 compareMatchedClasses(members)
 ```
+
 The first five lines all utilise the `cutree()` function
 to return the cluster membership of each sample when the dendrogram is cut into
 the specified _k_ classes. In this case we have chosen to cut each
@@ -240,6 +247,7 @@ is also presented both unadjusted for and adjusted for chance.
 the resulting clusterings of the water chemistry data?**
 
 # _k_-means cluster analysis
+
 Agglomerative cluster analysis methods impose a hierarchy of between-sample
 distances; a hierarchy that is unlikely to exist in reality, but one which
 helps reduce the computational effort required to produce a clustering of the
@@ -268,6 +276,7 @@ earlier. We proceed by loading the `MASS` package, and
 creating a temporary matrix containing the water chemistry data to assist in
 calculating the initial starting configuration, which is stored in
 `initial`.
+
 ```{r}
 require(MASS) #returns TRUE if loaded or is available to load FALSE if not
 pondsenv.mat <- as.matrix(pondsenv)
@@ -277,6 +286,7 @@ mean)
 dimnames(initial) <- list(NULL, dimnames(pondsenv.mat)[[2]])
 initial
 ```
+
 The code producing `initial` looks a little daunting at
 first, but is easier to understand if it is broken down into its constituent
 parts. The first argument to `tapply()` is the temporary
@@ -307,6 +317,7 @@ original data frame and stores then as the column names for the
 
 Now that we have calculated the initial starting configuration, we
 can proceed with the _k_-means clustering:
+
 ```{r}
 ponds.km <- kmeans(pondsenv, centers = initial)
 ponds.km
