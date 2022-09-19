@@ -83,7 +83,7 @@ version.string R version 4.2.1 (2022-06-23)
 nickname       Funny-Looking Kid
 ```
 
-This should include `4.2.1` if you are running the latest release, but should be no lower than `4.2.0`.
+This should include `4.2.1` if you are running the latest release, but should be no lower than `4.2.0`. If the installed version of R is < 4.2.0, install a newver version of R by downloading and running one of the installers from [cloud.r-project.org](https://cloud.r-project.org/) as mentioned above.
 
 To check that RStudio is up-to-date, open RStudio, open the Help menu, and choose *Check for Updates*. RStudio will then check to see if there is a newer version available and if there is it will give you the option to download the newer version.
 
