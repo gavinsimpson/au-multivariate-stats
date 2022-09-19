@@ -5,7 +5,7 @@ date: September 19, 2020
 output: html_document
 ---
 
-# abstract
+# Abstract
 
 This practical will use diatom and hydro-chemistry for a series of 30 ponds and
 pools from Southern England; including hierarchical, _k_-means and fuzzy
