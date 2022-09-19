@@ -36,6 +36,10 @@ theme_set(theme_minimal(base_size = 16, base_family = 'Fira Sans'))
 
 # Today's topics
 
+---
+
+# Today's topics
+
 * Ordination
 
     * Principal Components Analysis (PCA)
@@ -1348,6 +1352,22 @@ autoplot(ord)
 # Any love for *ggplot*?
 
 The **ggvegan** package is in development
+
+```{r install-ggvegan, eval = FALSE, echo = TRUE}
+# Install src from github
+remotes::install_github("gavinsimpson/ggvegan")
+# or binary from R-universe:
+# Enable repository from gavinsimpson
+options(repos = c(
+  gavinsimpson = 'https://gavinsimpson.r-universe.dev',
+  CRAN = 'https://cloud.r-project.org'))
+# Download and install ggvegan in R
+install.packages('ggvegan')
+```
+
+---
+
+# ggvegan
 
 .row[
 .col-6[
