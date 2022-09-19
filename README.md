@@ -2,7 +2,11 @@
 
 ### Aarhus University PhD Course
 
-* Autumn 2022 running: September 19<sup>th</sup> &ndash; 23<sup>rd</sup> 
+* Autumn 2022 running: September 19<sup>th</sup> &ndash; 23<sup>rd</sup>
+
+### Slides
+
+* [Monday](https://gavinsimpson.github.io/au-multivariate-stats/slides/01-dissimilarity-clustering-diversity/)
 
 ## Objectives of the course
 
