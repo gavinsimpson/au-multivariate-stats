@@ -28,7 +28,7 @@ After completing the course, participants will
 
 ## Compulsory programme
 
-Active participation in the course including attendance at lectures and completion of computer-based classes and exercises. A learn by teaching approach will be used for the computer-based assessments, where each participant will be expected to, as part of a small group, demonstrate their approach to the analysis of a problem data set from the previous day. Completion of short, computer-based assessments testing their understanding of a topic and the practical skills taught.
+Active participation in the course including attendance at lectures and completion of computer-based classes and exercises. A learn-by-teaching approach will be used for the computer-based assessments, where each participant will be expected to, as part of a small group, demonstrate their approach to the analysis of a problem data set from the previous day. Completion of short, computer-based assessments testing their understanding of a topic and the practical skills taught.
 
 ## Course content
 
