@@ -10,7 +10,7 @@
 
 ### Computing
 
-* [Monday](https://gavinsimpson.github.io/au-multivariate-stats/computing/01-clustering-analysis/cluster-analysis.html)
+* [Monday](https://gavinsimpson.github.io/au-multivariate-stats/computing/01-cluster-analysis/cluster-analysis.html)
 
 ## Objectives of the course
 
