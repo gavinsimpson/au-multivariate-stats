@@ -24,6 +24,7 @@ values from fossil diatom assemblages preserved in lake sediment cores.
 3. Perform a cluster analysis of the Vltava river valley data
 
 # Hierarchical agglomerative cluster analysis
+
 Hierarchical agglomerative cluster analysis methods start with all samples in
 separate clusters and sequentially fuse together the two most similar clusters
 until all samples are in a single cluster. A variety of measures of similarity
@@ -38,7 +39,7 @@ matrices using a variety of distance (or dissimilarity)
 coefficients. First, read in the **ponds** data set:
 
 ```{r}
-ponds_url <- "https://bit.ly/pondsenv"
+ponds_url <- "https://bit.ly/pondsfull"
 ponds <- read.csv(url(ponds_url))
 names(ponds)
 rownames(ponds)
@@ -343,7 +344,7 @@ the _k_-means clustering (after
 plotted points to identify them, end with a right click):
 
 ```{r}
-ponds.pca <- princomp(pondsenv)
+ponds.pca <- prcomp(pondsenv)
 screeplot(ponds.pca)
 ponds.pred <- predict(ponds.pca)
 dimnames(ponds.km$centers)[[2]] <- dimnames(pondsenv)[[2]]
