@@ -7,6 +7,7 @@
 ### Slides
 
 * [Monday](https://gavinsimpson.github.io/au-multivariate-stats/slides/01-dissimilarity-clustering-diversity/slides.html)
+* [Tuesday](https://gavinsimpson.github.io/au-multivariate-stats/slides/02-unconstrained-ordination/slides.html)
 
 ### Computing
 
