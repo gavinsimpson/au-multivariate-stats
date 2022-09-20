@@ -12,6 +12,8 @@
 
 * [Wednesday](https://gavinsimpson.github.io/au-multivariate-stats/slides/03-constrained-ordination/slides.html)
 
+* [Thursday](https://gavinsimpson.github.io/au-multivariate-stats/slides/04-permutation-tests/slides.html)
+
 ### Computing
 
 * [Monday](https://gavinsimpson.github.io/au-multivariate-stats/computing/01-cluster-analysis/cluster-analysis.html)
