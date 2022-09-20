@@ -10,7 +10,7 @@
 
 * [Tuesday](https://gavinsimpson.github.io/au-multivariate-stats/slides/02-unconstrained-ordination/slides.html)
 
-* [Wednesday](https://gavinsimpson.github.io/au-multivariate-stats/slides/02-constrained-ordination/slides.html)
+* [Wednesday](https://gavinsimpson.github.io/au-multivariate-stats/slides/03-constrained-ordination/slides.html)
 
 ### Computing
 
