@@ -13,6 +13,8 @@
 
 * [Monday](https://gavinsimpson.github.io/au-multivariate-stats/computing/01-cluster-analysis/cluster-analysis.html)
 
+* [Tuesday](https://gavinsimpson.github.io/au-multivariate-stats/computing/02-unconstrained-ordination/unconstrained-ordination.html)
+
 ## Objectives of the course
 
 The aim of the course is to provide an introduction to the analysis of multivariate data arising from observation and experimental studies with the R statistical software.
