@@ -597,26 +597,29 @@ compareMatchedClasses(members)</code></pre>
 <pre class="r"><code>require(MASS) #returns TRUE if loaded or is available to load FALSE if not</code></pre>
 <pre><code>## Loading required package: MASS</code></pre>
 <pre class="r"><code>pondsenv.mat &lt;- as.matrix(pondsenv)
-initial &lt;- tapply(pondsenv.mat, list(rep(cutree(pond.avg, k = 4),
-    ncol(pondsenv.mat)), col(pondsenv.mat)),
-mean)
-dimnames(initial) &lt;- list(NULL, dimnames(pondsenv.mat)[[2]])
+# initial &lt;- tapply(pondsenv.mat, list(rep(cutree(pond.avg, k = 4),
+#     ncol(pondsenv.mat)), col(pondsenv.mat)),
+# mean)
+# dimnames(initial) &lt;- list(NULL, dimnames(pondsenv.mat)[[2]])
+# initial
+
+initial &lt;- aggregate(pondsenv ~ cutree(pond.avg, k = 4), FUN = mean)[, -1]
 initial</code></pre>
-<pre><code>##             pH Conductivity Alkalinity        TP      SiO2        NO3        Na
-## [1,] 0.9906810    0.9881786  0.7738583 0.9732949 0.8987840  0.2763468 0.9882921
-## [2,] 0.9686033    0.9498077  0.8444599 0.9718913 1.2580812  2.1319248 0.8700127
-## [3,] 0.8783098    0.9307489 -0.5210372 0.9059333 1.0425081  1.5048369 1.0240844
-## [4,] 1.0084576    0.9965745  0.6618439 0.9435906 0.5747634 -0.4682216 0.9526573
-##              K        Mg        Ca        Cl       SO4      Chla    Secchi
-## [1,] 0.9939912 0.9867959 0.9873855 0.9878328 0.9893787 0.9851775 0.8660565
-## [2,] 0.8245920 0.8838306 0.9845333 0.8653552 0.8892995 0.7244555 1.2139745
-## [3,] 0.9026149 0.9959402 0.8782816 1.0343345 0.9224448 0.9179478 0.6075038
-## [4,] 1.0473468 0.9743230 1.0291234 0.9851449 1.0873895 0.4719017 1.6520901
-##       Maxdepth
-## [1,] 0.8930688
-## [2,] 0.6140988
-## [3,] 0.9644373
-## [4,] 2.3653447</code></pre>
+<pre><code>##          pH Conductivity Alkalinity        TP      SiO2        NO3        Na
+## 1 0.9906810    0.9881786  0.7738583 0.9732949 0.8987840  0.2763468 0.9882921
+## 2 0.9686033    0.9498077  0.8444599 0.9718913 1.2580812  2.1319248 0.8700127
+## 3 0.8783098    0.9307489 -0.5210372 0.9059333 1.0425081  1.5048369 1.0240844
+## 4 1.0084576    0.9965745  0.6618439 0.9435906 0.5747634 -0.4682216 0.9526573
+##           K        Mg        Ca        Cl       SO4      Chla    Secchi
+## 1 0.9939912 0.9867959 0.9873855 0.9878328 0.9893787 0.9851775 0.8660565
+## 2 0.8245920 0.8838306 0.9845333 0.8653552 0.8892995 0.7244555 1.2139745
+## 3 0.9026149 0.9959402 0.8782816 1.0343345 0.9224448 0.9179478 0.6075038
+## 4 1.0473468 0.9743230 1.0291234 0.9851449 1.0873895 0.4719017 1.6520901
+##    Maxdepth
+## 1 0.8930688
+## 2 0.6140988
+## 3 0.9644373
+## 4 2.3653447</code></pre>
 <p>The code producing <code>initial</code> looks a little daunting at first, but is easier to understand if it is broken down into its constituent parts. The first argument to <code>tapply()</code> is the temporary matrix of water chemistry data we just created (it needs to be a matrix, because <code>col()</code> and <code>ncol()</code> only work with a matrix object). The last argument is <code>mean</code>, and tells R to calculate the mean value of some combination of the values in <code>pondsenv.mat</code>.</p>
 <p>That combination is defined by the second (and most complicated) argument used above, which basically creates a list containing as its first object the cluster membership vector (from the average dendrogram cut into 4 clusters) repeated 15 times (from the number of columns in <code>pondsenv.mat</code>, returned by <code>ncol()</code>). The second object in the list is a matrix of integers indicating their column number in <code>pondsenv.mat</code>. What this list is used for is to produce a cross-classification table which defines the groups of values for which we want to calculate the mean water chemistry.</p>
 <p>If you don’t understand this, don’t worry about it; it is sufficient to know that for your own data all you need to do is replace the first argument with your own matrix of data, give your own dendrogram, specify <em>k</em>, and substitute your matrix of data into the <code>ncol()</code> and <code>col()</code> functions.</p>

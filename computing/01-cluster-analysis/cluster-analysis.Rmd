@@ -278,10 +278,13 @@ calculating the initial starting configuration, which is stored in
 ```{r}
 require(MASS) #returns TRUE if loaded or is available to load FALSE if not
 pondsenv.mat <- as.matrix(pondsenv)
-initial <- tapply(pondsenv.mat, list(rep(cutree(pond.avg, k = 4),
-    ncol(pondsenv.mat)), col(pondsenv.mat)),
-mean)
-dimnames(initial) <- list(NULL, dimnames(pondsenv.mat)[[2]])
+# initial <- tapply(pondsenv.mat, list(rep(cutree(pond.avg, k = 4),
+#     ncol(pondsenv.mat)), col(pondsenv.mat)),
+# mean)
+# dimnames(initial) <- list(NULL, dimnames(pondsenv.mat)[[2]])
+# initial
+
+initial <- aggregate(pondsenv ~ cutree(pond.avg, k = 4), FUN = mean)[, -1]
 initial
 ```
 
