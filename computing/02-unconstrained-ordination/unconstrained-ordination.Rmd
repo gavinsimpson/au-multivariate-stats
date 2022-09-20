@@ -18,7 +18,7 @@ Principal Components Analysis (PCA) is a common statistical methods and is imple
 
 Start **R** and load the **vegan** package for use. Read in the two data sets:
 
-```{r echo=TRUE, fig.show="hide"}
+```{r echo=TRUE}
 library("vegan")
 url_env <- "https://bit.ly/pondsenv"
 pondsenv <- read.csv(url(url_env))
