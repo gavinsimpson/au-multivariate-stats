@@ -94,7 +94,7 @@ plot(ponds.cca, scaling = 1)
 
 **What effect does the choice of scaling have on the ordination plots?**
 
-## Interpretting the CCA results
+## Interpreting the CCA results
 
 There is a lot more that can be done to interpret the results of the CCA and explore relationships between the diatom species and the environmental variables, as well as determining model performance for the CCA itelf.
 
@@ -194,18 +194,18 @@ mod0 <- cca(diat ~ 1, data = env)
 mod0
 ```
 
-As you can see, this is an unconstrained model or a CA. Function `step.cca()` is used to _step_ forwards or backwards through a series of nested models adding or dropping an explanatory variable at each iteration [^ `step()` is a generic function and `step` methods can be written for different modelling functions. This means you only need to use the generic `step()` and **R** take care of finding and using the correct method for the object you are running `step()` on. Another example of a generic is `anova()`, which you used earlier&mdash;what you actually used was `anova.cca()`]. To use `step()` we need to define an upper and lower scope for the stepping to place over. We will use `mod0` as the lower scope and `ponds.cca` (the full model) as the upper scope when performing forward selection&mdash;this is reversed when performing backwards elimination.
+As you can see, this is an unconstrained model or a CA. Function `step.cca()` is used to _step_ forwards or backwards through a series of nested models adding or dropping an explanatory variable at each iteration ^[`step()` is a generic function and `step` methods can be written for different modelling functions. This means you only need to use the generic `step()` and **R** take care of finding and using the correct method for the object you are running `step()` on. Another example of a generic is `anova()`, which you used earlier&mdash;what you actually used was `anova.cca()`]. To use `step()` we need to define an upper and lower scope for the stepping to place over. We will use `mod0` as the lower scope and `ponds.cca` (the full model) as the upper scope when performing forward selection&mdash;this is reversed when performing backwards elimination.
 
 ```{r echo=TRUE,eval=FALSE}
 mod <- step(ponds.cca, scope = list(lower = formula(mod0),
-                         upper = formula(ponds.cca)))
+                         upper = formula(ponds.cca)), test = "perm")
 ```
 ```{r eval=TRUE,echo=FALSE}
 mod <- step(ponds.cca, scope = list(lower = formula(mod0),
-                         upper = formula(ponds.cca)), trace = FALSE)
+                         upper = formula(ponds.cca)), test = "perm", trace = FALSE)
 ```
 
-You should have seen lots of output flash across the screen. At each stage, the effect of adding/dropping a variable is evaluated in terms of AIC and the variables ordered by AIC. Low AIC values are preferred, and if a lower AIC can be achieved by adding or removing a variable at a stage then this variable is added/deleted and the procedure repeats, this time using the new formula as the starting point. In the above example, we used both forwards and backwards elmination at each step.
+You should have seen lots of output flash across the screen. At each stage, the effect of adding/dropping a variable is evaluated in terms of a permutation test. In the above example, we used both forwards and backwards elmination at each step.
 
 Print out the record of the steps:
 
@@ -254,7 +254,7 @@ We can now retry the automatic stepping model selection and plot the resulting t
 
 ```{r results="hide"}
 mod.delete <- step(cca.delete, scope = list(lower = formula(mod0),
-                   upper = formula(cca.delete)))
+                   upper = formula(cca.delete)), test = "perm")
 plot(mod.delete)
 ```
 
@@ -264,30 +264,46 @@ A further thing we should check is whether we get different models whether we do
 
 ```{r results="hide"}
 mod.fwd<- step(mod0, scope = list(lower = formula(mod0),
-                   upper = formula(cca.delete)))
+                   upper = formula(cca.delete)), test = "perm")
 plot(mod.fwd)
 ```
 
 **Which variables has forward selection chosen?**
 
-This highlights one of the problems with automatic model building tools. As a description of the data, `mod.delete` seems a nicer plot, but it retains a number environmental variables that are very correlated. Forward selection produces a model with a single environmental variables. So which to use? And therein lies the problem. There is no substitution for rolling up ones sleeves and getting involved in building and checking lots of candidate models.
+This highlights one of the problems with automatic model building tools. As a description of the data, `mod.delete` seems a nicer plot, but it retains a number environmental variables that are very correlated. Forward selection produces a model with a single environmental variable. So which to use? And therein lies the problem. There is no substitution for rolling up ones sleeves and getting involved in building and checking lots of candidate models.
 
 As a starter, we could look at the significance of the terms in `mod.delete`:
 
 ```{r test1}
-anova(mod.delete, by = "terms")
+anova(mod.delete, by = "margin")
 ```
 
-Here, the significance of terms are assessed sequentially from first to last. A number of the environmental variables are not significant under this test. As a strategy for producing a parsimonius model, we might proceed by removing the variable that contributes the least here, Na.
+Here, the significance of terms are assessed marginally. A number of the environmental variables are not significant under this test. As a strategy for producing a parsimonius model, we might proceed by removing the variable that contributes the least here, NO<sub>3</sub>.
 
 **As an exercise if you have time, try dropping out terms and rerun `anova` to try to produce a parsimonious model.**
+
+## Step-wise selection using Adjusted $R^2$
+
+A better way to do this for selection might be to include the adjusted $R^2$ in our evaluations of the changes to the models we make as we sequentially add or remove terms from the model. The function `ordiR2step()` does this for us, in which we not only add a variable if it significantly improves the model, but we also compare against the $R^2_{\text{adjusted}}$ of the model at the upper scope
+
+```{r ordir2step-cca-delete}
+mod.r2step <- ordiR2step(mod0, scope = formula(cca.delete))
+mod.r2step
+mod.r2step$anova
+```
+
+**Which terms have been retained in this model?**
+
+**Does this differ from the previous step-wise selection?**
+
+**Using `anova()` test the individual marginal effects of the terms retained in `mod.r2step`. Do all the terms have statistically significant marginal effects?**
 
 ## Partial CCA models
 There are occaisions where we might wish to fit a model to our species data after controlling for the effects of one or more environmental variables. These models are known as partial constrained ordinations&mdash;the effect of the one or more environmental variables are partialled out, and a CCA/RDA model is applied to explain the residual variation.
 
 In **vegan** partial models are fitted using the `Condition()` function within the model formula describing the model you wish to fit. The `Condition()` function is used to _condition_ the model on the set of covariables and fit a model to the residuals of the conditioned model. Multiple variables can be included within `Condition()`, separated by a `+`. Partial models can also be used to evaluate the significance of adding a new variable to a model already containing one or more variables&mdash;partial out the existing variables and fit a model with the new variable of interest, using `anova()` to assess the effect of adding this new variable.
 
-Say we were interested in investigating the effects of the hydrochemical variables on diatom distributions in the Ponds dataset, after controlling for the effects of MaxDepth and Secchi, we would fit this model in **R** like so:
+Say we were interested in investigating the effects of the hydrochemical variables on diatom distributions in the Ponds dataset, after controlling for the effects of `Maxdepth` and `Secchid`, we would fit this model in **R** like so:
 
 ```{r }
 partial.mod <- cca(diat ~ . + Condition(Maxdepth + Secchid), data = env)
@@ -338,11 +354,10 @@ birds_spp <- birds_spp[, 1:36]
 
 birds_env <- birds %>%
     select(c("...1", Altit:Expos)) %>%
-    mutate(Rocks = factor(Rocks), Expos = factor(Expos)) %>%
+    mutate(Rocks = factor(Rocks), Expos = factor(Expos),
+    across(Forest:Slope, ~ ordered(.x))) %>%
     column_to_rownames("...1")
 ```
-
-The aim of the analysis is to find a good ordination of the species data (choose your ordination method, transformation, dissimilarity, etc according to what features of the species data you want to focus on). Then, having found a good ordination, use the environmental data to try to explain the ordination axes or mapping you have created.
 
 The variables are:
 
@@ -357,3 +372,5 @@ The variables are:
 * Slope
 * Presence of rocks
 * Exposure
+
+The aim of the analysis is to fit a constrained ordination to these data, to identify which of the predictor variables seem to have the best ability to explain variation in bird data.
