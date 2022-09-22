@@ -22,7 +22,7 @@
 
 * [Wednesday](https://gavinsimpson.github.io/au-multivariate-stats/computing/03-constrained-ordination/constrained-ordination.html)
 
-* [Thursday](https://gavinsimpson.github.io/au-multivariate-stats/computing/04-permutation/tests/permutation/tests.html)
+* [Thursday](https://gavinsimpson.github.io/au-multivariate-stats/computing/04-permutation-tests/permutation-tests.html)
 
 ## Objectives of the course
 
