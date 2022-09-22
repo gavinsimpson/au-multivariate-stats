@@ -1,0 +1,14 @@
+﻿,,Block,Ploughing Time
+,,Block,Treatmnt
+SAMPLE01,SAMPLE01,block  1,pltime 1
+SAMPLE02,SAMPLE02,block  1,pltime 2
+SAMPLE03,SAMPLE03,block  1,pltime 3
+SAMPLE04,SAMPLE04,block  2,pltime 1
+SAMPLE05,SAMPLE05,block  2,pltime 2
+SAMPLE06,SAMPLE06,block  2,pltime 3
+SAMPLE07,SAMPLE07,block  3,pltime 1
+SAMPLE08,SAMPLE08,block  3,pltime 2
+SAMPLE09,SAMPLE09,block  3,pltime 3
+SAMPLE10,SAMPLE10,block  4,pltime 1
+SAMPLE11,SAMPLE11,block  4,pltime 2
+SAMPLE12,SAMPLE12,block  4,pltime 3
