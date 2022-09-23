@@ -215,3 +215,49 @@ plough_design <- read_csv(url("https://bit.ly/plough-design")) %>%
     column_to_rownames("label")
 ```
 
+# A multivariate experiment with fixed factors
+
+This example uses a data set of Swedish pine forest undergrowth assemblages that were experimentally manipulated through the addition of nitrogen `N` and phosphorus `P`. There are 32 samples in 4 complete, randomized bloacks of 8 plots each. In each block, all combinations of 4 levels of nitrogen `N` (applied as ammonium nitrate) and 2 levels of phosphorus `P` (applied as compound PK fertilizer) were applied.
+
+```{r e40-load}
+e40_spp <- read_csv(url("https://bit.ly/e40-spp"), skip = 1L) %>%
+    rename(label = "...1") %>%
+    select(-`...2`) %>%
+    mutate(across(-label, ~ replace_na(.x, 0))) %>%
+    column_to_rownames("label")
+
+e40_design <- read_csv(url("https://bit.ly/e40-design"), skip = 1L) %>%
+    rename(label = "...1") %>%
+    select(-`...2`) %>%
+    mutate(across(-label, ~ factor(.x))) %>%
+    column_to_rownames("label")
+```
+
+The levels of `N` are
+
+```{r}
+with(e40_design, levels(N))
+```
+
+where `N0` means no N addition
+
+The levels of `P` are
+
+```{r}
+with(e40_design, levels(P))
+```
+
+where `P0` means no P addition.
+
+The variable `Block` codes for the 4 blocks of 8 plots.
+
+In 1987 the undergrowth of the plots was surveyed. The percentage cover of plant species (including tree saplings, bryophytes, and lichens) was estimated and recorded on a ten-point scale. There are 103 species recorded. The ten-point scale values were re-expressed as the mid-points of the ten-point percentage scale in `e40_spp`. The species data are `log(x + 1)` transformed.
+
+The aim of the analysis is to test the effects of
+
+1. the N addition effect,
+2. the P addition effect,
+3. the combined effects of N and P additions
+4. the magnitude of the interaction effect
+
+using a combination of models and appropriate permutation tests.

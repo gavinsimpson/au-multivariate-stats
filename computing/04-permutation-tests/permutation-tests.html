@@ -479,11 +479,10 @@ design_all &lt;- design %&gt;%
 <pre><code>## New names:
 ## Rows: 40 Columns: 102
 ## ── Column specification
-## ──────────────────────────────────────────────────────────── Delimiter: &quot;,&quot; chr
-## (2): ...1, ...2 dbl (100): ACHILMIL, ACHILPTA, AGROS-SP, ANGELSYL, ANTHOODO,
-## CALAMCAN, CAPSE...
-## ℹ Use `spec()` to retrieve the full column specification for this data. ℹ Specify
-## the column types or set `show_col_types = FALSE` to quiet this message.
+## ───────────────────────────────────────────────────────────────────────────────────────── Delimiter: &quot;,&quot; chr
+## (2): ...1, ...2 dbl (100): ACHILMIL, ACHILPTA, AGROS-SP, ANGELSYL, ANTHOODO, CALAMCAN, CAPSE...
+## ℹ Use `spec()` to retrieve the full column specification for this data. ℹ Specify the column types or set
+## `show_col_types = FALSE` to quiet this message.
 ## • `` -&gt; `...1`
 ## • `` -&gt; `...2`</code></pre>
 <pre class="r"><code>grid &lt;- read_csv(url(&quot;https://bit.ly/grid-predictors&quot;), skip = 1L,
@@ -520,11 +519,10 @@ g88_veg &lt;- grid %&gt;%
 <pre><code>## New names:
 ## Rows: 96 Columns: 87
 ## ── Column specification
-## ──────────────────────────────────────────────────────────── Delimiter: &quot;,&quot; chr
-## (1): ...1 dbl (86): molicaer, nardstri, festrubr, brizmed, anthodor, siegdecu,
-## holclan...
-## ℹ Use `spec()` to retrieve the full column specification for this data. ℹ Specify
-## the column types or set `show_col_types = FALSE` to quiet this message.
+## ───────────────────────────────────────────────────────────────────────────────────────── Delimiter: &quot;,&quot; chr
+## (1): ...1 dbl (86): molicaer, nardstri, festrubr, brizmed, anthodor, siegdecu, holclan...
+## ℹ Use `spec()` to retrieve the full column specification for this data. ℹ Specify the column types or set
+## `show_col_types = FALSE` to quiet this message.
 ## • `` -&gt; `...1`</code></pre>
 <pre class="r"><code>molinia &lt;- spp %&gt;%
     select(label:molicaer)
@@ -540,10 +538,10 @@ env &lt;- read_csv(url(&quot;https://bit.ly/ohraz-env&quot;)) %&gt;%
 <pre><code>## New names:
 ## Rows: 96 Columns: 6
 ## ── Column specification
-## ──────────────────────────────────────────────────────────── Delimiter: &quot;,&quot; chr
+## ───────────────────────────────────────────────────────────────────────────────────────── Delimiter: &quot;,&quot; chr
 ## (5): ...1, mowing, fertilizer, removal, plotid dbl (1): year
-## ℹ Use `spec()` to retrieve the full column specification for this data. ℹ Specify
-## the column types or set `show_col_types = FALSE` to quiet this message.
+## ℹ Use `spec()` to retrieve the full column specification for this data. ℹ Specify the column types or set
+## `show_col_types = FALSE` to quiet this message.
 ## • `` -&gt; `...1`</code></pre>
 </div>
 <div id="hierarchical-effects-of-crayfish" class="section level1">
@@ -557,11 +555,10 @@ env &lt;- read_csv(url(&quot;https://bit.ly/ohraz-env&quot;)) %&gt;%
 <pre><code>## New names:
 ## Rows: 568 Columns: 11
 ## ── Column specification
-## ──────────────────────────────────────────────────────────── Delimiter: &quot;,&quot; chr
-## (1): ...1 dbl (10): punct-L, punct-S, march-L, march-S, hubbs-L, hubbs-S, oz-L,
-## oz-S, ...
-## ℹ Use `spec()` to retrieve the full column specification for this data. ℹ Specify
-## the column types or set `show_col_types = FALSE` to quiet this message.
+## ───────────────────────────────────────────────────────────────────────────────────────── Delimiter: &quot;,&quot; chr
+## (1): ...1 dbl (10): punct-L, punct-S, march-L, march-S, hubbs-L, hubbs-S, oz-L, oz-S, ...
+## ℹ Use `spec()` to retrieve the full column specification for this data. ℹ Specify the column types or set
+## `show_col_types = FALSE` to quiet this message.
 ## • `` -&gt; `...1`</code></pre>
 <pre class="r"><code>design &lt;- read_csv(url(&quot;https://bit.ly/crayfish-design&quot;)) %&gt;%
     rename(label = &quot;...1&quot;) %&gt;%
@@ -571,10 +568,10 @@ env &lt;- read_csv(url(&quot;https://bit.ly/ohraz-env&quot;)) %&gt;%
 <pre><code>## New names:
 ## Rows: 568 Columns: 8
 ## ── Column specification
-## ──────────────────────────────────────────────────────────── Delimiter: &quot;,&quot; chr
+## ───────────────────────────────────────────────────────────────────────────────────────── Delimiter: &quot;,&quot; chr
 ## (8): ...1, Watershed, Stream, Reach, Run, Stream Nested, Reach Nested, R...
-## ℹ Use `spec()` to retrieve the full column specification for this data. ℹ Specify
-## the column types or set `show_col_types = FALSE` to quiet this message.
+## ℹ Use `spec()` to retrieve the full column specification for this data. ℹ Specify the column types or set
+## `show_col_types = FALSE` to quiet this message.
 ## • `` -&gt; `...1`</code></pre>
 <p>Repeat the exercise from the slides, testing the different levels of the hierarchical scales of variation in crayfish species abundance.</p>
 </div>
@@ -589,10 +586,10 @@ env &lt;- read_csv(url(&quot;https://bit.ly/ohraz-env&quot;)) %&gt;%
 <pre><code>## New names:
 ## Rows: 13 Columns: 15
 ## ── Column specification
-## ──────────────────────────────────────────────────────────── Delimiter: &quot;,&quot; chr
+## ───────────────────────────────────────────────────────────────────────────────────────── Delimiter: &quot;,&quot; chr
 ## (15): ...1, ...2, Che alb, Pol per, Pol avi, Spe arv, Mat rec, Gna uli, ...
-## ℹ Use `spec()` to retrieve the full column specification for this data. ℹ Specify
-## the column types or set `show_col_types = FALSE` to quiet this message.
+## ℹ Use `spec()` to retrieve the full column specification for this data. ℹ Specify the column types or set
+## `show_col_types = FALSE` to quiet this message.
 ## • `` -&gt; `...1`
 ## • `` -&gt; `...2`</code></pre>
 <pre class="r"><code>plough_design &lt;- read_csv(url(&quot;https://bit.ly/plough-design&quot;)) %&gt;%
@@ -604,12 +601,62 @@ env &lt;- read_csv(url(&quot;https://bit.ly/ohraz-env&quot;)) %&gt;%
 <pre><code>## New names:
 ## Rows: 13 Columns: 4
 ## ── Column specification
-## ──────────────────────────────────────────────────────────── Delimiter: &quot;,&quot; chr
+## ───────────────────────────────────────────────────────────────────────────────────────── Delimiter: &quot;,&quot; chr
 ## (4): ...1, ...2, Block, Ploughing Time
-## ℹ Use `spec()` to retrieve the full column specification for this data. ℹ Specify
-## the column types or set `show_col_types = FALSE` to quiet this message.
+## ℹ Use `spec()` to retrieve the full column specification for this data. ℹ Specify the column types or set
+## `show_col_types = FALSE` to quiet this message.
 ## • `` -&gt; `...1`
 ## • `` -&gt; `...2`</code></pre>
+</div>
+<div id="a-multivariate-experiment-with-fixed-factors" class="section level1">
+<h1>A multivariate experiment with fixed factors</h1>
+<p>This example uses a data set of Swedish pine forest undergrowth assemblages that were experimentally manipulated through the addition of nitrogen <code>N</code> and phosphorus <code>P</code>. There are 32 samples in 4 complete, randomized bloacks of 8 plots each. In each block, all combinations of 4 levels of nitrogen <code>N</code> (applied as ammonium nitrate) and 2 levels of phosphorus <code>P</code> (applied as compound PK fertilizer) were applied.</p>
+<pre class="r"><code>e40_spp &lt;- read_csv(url(&quot;https://bit.ly/e40-spp&quot;), skip = 1L) %&gt;%
+    rename(label = &quot;...1&quot;) %&gt;%
+    select(-`...2`) %&gt;%
+    mutate(across(-label, ~ replace_na(.x, 0))) %&gt;%
+    column_to_rownames(&quot;label&quot;)</code></pre>
+<pre><code>## New names:
+## Rows: 32 Columns: 105
+## ── Column specification
+## ───────────────────────────────────────────────────────────────────────────────────────── Delimiter: &quot;,&quot; dbl
+## (105): ...1, ...2, agroscap, anthoodo, arctouva, aulacpal, betulpen, bet...
+## ℹ Use `spec()` to retrieve the full column specification for this data. ℹ Specify the column types or set
+## `show_col_types = FALSE` to quiet this message.
+## • `` -&gt; `...1`
+## • `` -&gt; `...2`</code></pre>
+<pre class="r"><code>e40_design &lt;- read_csv(url(&quot;https://bit.ly/e40-design&quot;), skip = 1L) %&gt;%
+    rename(label = &quot;...1&quot;) %&gt;%
+    select(-`...2`) %&gt;%
+    mutate(across(-label, ~ factor(.x))) %&gt;%
+    column_to_rownames(&quot;label&quot;)</code></pre>
+<pre><code>## New names:
+## Rows: 32 Columns: 5
+## ── Column specification
+## ───────────────────────────────────────────────────────────────────────────────────────── Delimiter: &quot;,&quot; chr
+## (3): N, P, Block dbl (2): ...1, ...2
+## ℹ Use `spec()` to retrieve the full column specification for this data. ℹ Specify the column types or set
+## `show_col_types = FALSE` to quiet this message.
+## • `` -&gt; `...1`
+## • `` -&gt; `...2`</code></pre>
+<p>The levels of <code>N</code> are</p>
+<pre class="r"><code>with(e40_design, levels(N))</code></pre>
+<pre><code>## [1] &quot;N0&quot; &quot;N1&quot; &quot;N2&quot; &quot;N3&quot;</code></pre>
+<p>where <code>N0</code> means no N addition</p>
+<p>The levels of <code>P</code> are</p>
+<pre class="r"><code>with(e40_design, levels(P))</code></pre>
+<pre><code>## [1] &quot;P0&quot; &quot;P1&quot;</code></pre>
+<p>where <code>P0</code> means no P addition.</p>
+<p>The variable <code>Block</code> codes for the 4 blocks of 8 plots.</p>
+<p>In 1987 the undergrowth of the plots was surveyed. The percentage cover of plant species (including tree saplings, bryophytes, and lichens) was estimated and recorded on a ten-point scale. There are 103 species recorded. The ten-point scale values were re-expressed as the mid-points of the ten-point percentage scale in <code>e40_spp</code>. The species data are <code>log(x + 1)</code> transformed.</p>
+<p>The aim of the analysis is to test the effects of</p>
+<ol style="list-style-type: decimal">
+<li>the N addition effect,</li>
+<li>the P addition effect,</li>
+<li>the combined effects of N and P additions</li>
+<li>the magnitude of the interaction effect</li>
+</ol>
+<p>using a combination of models and appropriate permutation tests.</p>
 </div>
 
 
