@@ -223,7 +223,8 @@ This example uses a data set of Swedish pine forest undergrowth assemblages that
 e40_spp <- read_csv(url("https://bit.ly/e40-spp"), skip = 1L) %>%
     rename(label = "...1") %>%
     select(-`...2`) %>%
-    mutate(across(-label, ~ replace_na(.x, 0))) %>%
+    mutate(across(-label, ~ replace_na(.x, 0)),
+           across(-label, ~ log1p(.x))) %>%
     column_to_rownames("label")
 
 e40_design <- read_csv(url("https://bit.ly/e40-design"), skip = 1L) %>%
