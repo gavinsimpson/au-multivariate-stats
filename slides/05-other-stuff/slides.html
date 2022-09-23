@@ -816,6 +816,29 @@ cts_df &lt;- as.data.frame(cts)
 ```
 
 ---
+
+# Rarefied counts
+
+Can take a random draw `\(n^{\prime}\)` out of the `\(N\)` individuals in a sample in proportion to species abundances
+
+This yields rarefied counts which some people then go on to analyse
+
+Be careful though as this is a random process &amp;mdash; what if you took a different random sample?
+
+---
+
+# Rarefied counts
+
+`avgdist()` in *vegan* tries to get around this by
+
+1. taking a random draw to get rarefied counts
+2. computing dissimilarity between smaples on basis of rarefied count
+
+Repeat that many times and then as your dissimilarity `\(d_{ij}\)`, take the average of the many `\(d_{ij}^*\)` values you generated above
+
+See also the help page for other suggestions `?avgdist`
+
+---
 class: inverse middle center big-subsection
 
 # GEEs
