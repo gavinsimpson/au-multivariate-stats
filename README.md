@@ -2,9 +2,19 @@
 
 ### Aarhus University PhD Course
 
-* Autumn 2022 running: September 19<sup>th</sup> &ndash; 23<sup>rd</sup>
+* Autumn 2024 running: August 6<sup>th</sup> &ndash; 8<sup>th</sup>
 
-### Slides
+* ECTS credits: 1.5 ECTS
+
+* Language: English
+
+* Fee: 350 DKK
+
+## Name of course leader
+
+Gavin Simpson, Assistant Professor, Department of Animal and Veterinary Sciences, Aarhus University gavin@anivet.au.dk
+
+<!-- ### Slides
 
 * [Monday](https://gavinsimpson.github.io/au-multivariate-stats/slides/01-dissimilarity-clustering-diversity/slides.html)
 
@@ -26,9 +36,11 @@
 
 * [Thursday](https://gavinsimpson.github.io/au-multivariate-stats/computing/04-permutation-tests/permutation-tests.html)
 
+-->
+
 ## Objectives of the course
 
-The aim of the course is to provide an introduction to the analysis of multivariate data arising from observation and experimental studies with the R statistical software.
+The aim of the course is to provide an introduction to the analysis of multivariate data arising from observational and experimental studies with the R statistical software.
 
 ## Learning outcomes and competences
 
@@ -51,7 +63,6 @@ The course covers the following topics:
 
 * An introduction to multivariate data and their analysis
 * Dissimilarity and dissimilarity coefficients
-* Cluster Analysis
 * Unconstrained ordination
     - Principal Components Analysis
     - Correspondence Analysis
@@ -63,8 +74,6 @@ The course covers the following topics:
     - Distance-based Redundancy Analysis
     - PERMANOVA and PERMDISP
 * Statistical testing using permutation tests
-* The future of multivariate data analysis
-* Introduction to recently-developed latent variable approaches to ordination
 
 ## Prerequisites
 
@@ -72,7 +81,7 @@ This course is suitable for Phd students (including senior thesis-based masters 
 
 ## Computing requirements
 
-Participants need to bring their own laptop with the latest version of R installed (version 4.2.0 or later), as well as the current version of RStudio. If you use another editor for your R code feel free to use it instead of Rstudio, but we cannot help you if you encounter problems with it.
+Participants need to bring their own laptop with the latest version of R installed (version 4.4.0 or later), as well as the current version of RStudio. If you use another editor for your R code feel free to use it instead of Rstudio, but we cannot help you if you encounter problems with it.
 
 You can download R from [cloud.r-project.org](https://cloud.r-project.org/) and select from the three links at the top of the page as required for your operating system.
 
@@ -87,38 +96,38 @@ version
 and look at the entry next to `version.string`:
 
 ```
-r$> version                                                                     
-               _                           
-platform       x86_64-pc-linux-gnu         
-arch           x86_64                      
-os             linux-gnu                   
-system         x86_64, linux-gnu           
-status                                     
-major          4                           
-minor          2.1                         
-year           2022                        
-month          06                          
-day            23                          
-svn rev        82513                       
-language       R                           
-version.string R version 4.2.1 (2022-06-23)
-nickname       Funny-Looking Kid
+> version
+               _
+platform       aarch64-apple-darwin20
+arch           aarch64
+os             darwin20
+system         aarch64, darwin20
+status
+major          4
+minor          4.0
+year           2024
+month          04
+day            24
+svn rev        86474
+language       R
+version.string R version 4.4.0 (2024-04-24)
+nickname       Puppy Cup
 ```
 
-This should include `4.2.1` if you are running the latest release, but should be no lower than `4.2.0`. If the installed version of R is < 4.2.0, install a newver version of R by downloading and running one of the installers from [cloud.r-project.org](https://cloud.r-project.org/) as mentioned above.
+This should include `4.4.0` if you are running the latest release (at the time of writing), but should be no lower than `4.4.0`. If the installed version of R is < 4.4.0, install a newver version of R by downloading and running one of the installers from [cloud.r-project.org](https://cloud.r-project.org/) as mentioned above.
 
 To check that RStudio is up-to-date, open RStudio, open the Help menu, and choose *Check for Updates*. RStudio will then check to see if there is a newer version available and if there is it will give you the option to download the newer version.
 
 Prior to arriving at AU Viborg on the 19th of September, make sure you have updated your installed R packages and that you have installed the following packages: tidyverse, vegan, mvabund, boral, ecoCopula, and cocorresp. To do this, open RStudio (or R) and in the console window (usually lower left, with a prompt that looks like `>`) run
 
 ```r
-parallel::detectCores(logical = FALSE)
+nc <- parallel::detectCores(logical = FALSE)
 ```
 
 This checks to see how many CPU cores you have available, which we use in the next chunk. 
 
 ```r
-update.packages(ask = FALSE, checkBuilt = TRUE, Ncpus = 4)
+update.packages(ask = FALSE, checkBuilt = TRUE, Ncpus = nc - 1)
 ```
 
 Change the value of `Ncpus` to the number cores you have on your computer as this will speed up package updates if you have many packages installed that require updating. If you want to work while this is being done, set `Ncpus` to a number less than that returned by `parallel::detectCores(logical = FALSE)`.
@@ -126,9 +135,5 @@ Change the value of `Ncpus` to the number cores you have on your computer as thi
 Now we can install the required packages
 
 ```r
-install.packages(c("tidyverse", "vegan", "mvabund", "boral", "ecoCopula", "cocorresp"))
+install.packages(c("tidyverse", "vegan"))
 ```
-
-## Name of course leader
-
-Gavin Simpson, Assistant Professor, Department of Animal Science, Aarhus University gavin@anivet.au.dk
