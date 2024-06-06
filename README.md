@@ -14,6 +14,10 @@
 
 Gavin Simpson, Assistant Professor, Department of Animal and Veterinary Sciences, Aarhus University gavin@anivet.au.dk
 
+### Registration
+
+To register for the course, please contact Julie Jensen on jsj@anivet.au.dk.
+
 <!-- ### Slides
 
 * [Monday](https://gavinsimpson.github.io/au-multivariate-stats/slides/01-dissimilarity-clustering-diversity/slides.html)
