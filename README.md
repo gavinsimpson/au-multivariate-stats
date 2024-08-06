@@ -18,10 +18,11 @@ Gavin Simpson, Assistant Professor, Department of Animal and Veterinary Sciences
 
 To register for the course, please contact Julie Jensen on jsj@anivet.au.dk.
 
-<!-- ### Slides
+### Slides
 
-* [Monday](https://gavinsimpson.github.io/au-multivariate-stats/slides/01-dissimilarity-clustering-diversity/slides.html)
+* [Monday](https://gavinsimpson.github.io/au-multivariate-stats/slides/01-dissimilarity-unconstrained-ordination/slides.html)
 
+<!--
 * [Tuesday](https://gavinsimpson.github.io/au-multivariate-stats/slides/02-unconstrained-ordination/slides.html)
 
 * [Wednesday](https://gavinsimpson.github.io/au-multivariate-stats/slides/03-constrained-ordination/slides.html)
