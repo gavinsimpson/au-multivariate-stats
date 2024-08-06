@@ -4,7 +4,7 @@
     <title>Constrained ordination</title>
     <meta charset="utf-8" />
     <meta name="author" content="Gavin L. Simpson" />
-    <meta name="date" content="2022-09-21" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="slides.css" type="text/css" />
@@ -20,7 +20,7 @@ class: inverse, middle, left, my-title-slide, title-slide
 ### Gavin L. Simpson
 ]
 .date[
-### September 21, 2022
+### August 7th, 2024
 ]
 
 ---
@@ -614,7 +614,7 @@ mods$anova
 Step-wise model selection is fairly fragile; if we start from the full model we won't end up with the same final model
 
 
-```r
+``` r
 mods2 &lt;- step(upr, scope = list(lower = formula(lwr), upper = formula(upr)), trace = 0,
               test = "perm")
 mods2
@@ -625,7 +625,7 @@ mods2
 # Stepwise selection in CCA
 
 
-```r
+``` r
 mods2 &lt;- step(upr, scope = list(lower = formula(lwr), upper = formula(upr)), trace = 0,
               test = "perm")
 mods2
@@ -782,7 +782,7 @@ Evaluate whether `\(F\)` is unusually large relative to the null (permutation) d
 .row[
 .col-6[
 
-```r
+``` r
 pstat &lt;- permustats(anova(cca1))
 summary(pstat)
 ```
@@ -791,7 +791,7 @@ summary(pstat)
 ```
 ## 
 ##       statistic    SES   mean lower median  upper Pr(perm)  
-## Model    1.4441 2.1270 1.0215       1.0033 1.3824    0.035 *
+## Model    1.4441 2.0266 1.0382       1.0143 1.3989    0.035 *
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
@@ -1045,7 +1045,7 @@ anova(m1)
 .row[
 .col-6[
 
-```r
+``` r
 plot(m1)
 ```
 ]
@@ -1093,7 +1093,7 @@ lwr &lt;- cca(spp ~ 1, data = env)
 .row[
 .col-6[
 
-```r
+``` r
 plot(m2)
 ```
 ]
@@ -1178,7 +1178,7 @@ m4
 .row[
 .col-6[
 
-```r
+``` r
 plot(m4)
 ```
 ]
