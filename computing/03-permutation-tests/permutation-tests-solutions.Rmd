@@ -1,7 +1,7 @@
 ---
 title: Permutation tests answers
 author: Gavin Simpson
-date: September 22, 2020
+date: August 8th, 
 output: html_document
 ---
 
