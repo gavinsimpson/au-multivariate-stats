@@ -41,7 +41,7 @@ summary(eigenvals(pondspca))
 ```
 
 
-**What are the values of $\lambda_1$ and $\lambda_1$, the eigenvalues for axes one and two?**
+**What are the values of $\lambda_1$ and $\lambda_2$, the eigenvalues for axes one and two?**
 
 **How much of the total variance in the environmental data is explained by axes one and two individually and cummulatively?**
 
