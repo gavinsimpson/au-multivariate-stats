@@ -1,0 +1,240 @@
+--- 
+title: "Analysing a randomised complete block design with vegan"
+author: Gavin Simpson
+date: May 30, 2024
+output: html_document
+---
+
+```{r setup-options, echo = FALSE, results = "hide", message = FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(cache = TRUE, dev = "svg", echo = TRUE, message = FALSE,
+  warning = FALSE, fig.height = 6, fig.width = 1.777777 * 6)
+```
+
+```{r, load-library}
+library("vegan")
+library("readxl")
+library("dplyr")
+```
+
+We'll need **readxl**, and its `read_xlsx()` function, to read from the 
+XLS format files that the example data come as.
+
+The data set itself is quite simple and small, consisting of counts on 23 species from 16 plots, and arise from a randomised complete block designed experiment described by &Scaron;pa&#269;kov&aacute; and colleagues [-@Spackova1998-ad] and analysed by [@Smilauer2014-ac] in their recent book using Canoco v5.
+
+The experiment tested the effects on seedling recruitment to a range of treatments
+
+ * control
+ * removal of litter
+ * removal of the dominant species *Nardus stricta*
+ * removal of litter and moss (moss couldn't be removed without also removing litter)
+
+The treatments were replicated replicated in four, randomised complete blocks.
+
+The data are available from the accompanying website to the book *Multivariate Analysis of Ecological Data using CANOCO 5* [@Smilauer2014-ac]. They are supplied as XLS format files in a ZIP archive. We can read these into R directly from the web with a little bit of effort
+
+```{r, load-data}
+## Download the excel data
+furl <- "https://bit.ly/seedlings-example"
+td <- tempdir()
+tf <- tempfile(tmpdir = td, fileext = ".xlsx")
+download.file(furl, tf)
+
+## list the sheets in the workbook
+excel_sheets(tf)
+
+## read the xlsx file, sheet 2 contains species data, sheet 3 the env
+spp <- read_xlsx(tf, sheet = "seedlspe", skip = 1) %>%
+  rename("sample_id" = "...1") %>%
+  tibble::column_to_rownames("sample_id")
+env <- read_xlsx(tf, sheet = "seedldesign")%>%
+  rename("sample_id" = "...1") %>%
+  tibble::column_to_rownames("sample_id")
+```
+
+If the above code block doesn't work for you (you get an error), then make sure you are in the `04-thursday` directory (folder) and have set that directory was the working directory for your R session, and then run
+
+```{r, eval = FALSE}
+spp <- read_xlsx("data/seedlings.xlsx", sheet = "seedlspe", skip = 1) %>%
+  rename("sample_id" = "...1") %>%
+  tibble::column_to_rownames("sample_id")
+
+env <- read_xlsx("data/seedlings.xlsx", sheet = "seedldesign")%>%
+  rename("sample_id" = "...1") %>%
+  tibble::column_to_rownames("sample_id")
+```
+
+The `block` variable is currently coded as an integer and needs 
+converting to a factor if we are to use it correctly in the analysis
+
+```{r, transform-block}
+env <- mutate(env, block = factor(block))
+```
+
+The gradient lengths are short,
+
+```{r, decorana}
+decorana(spp)
+```
+
+motivating the use of redundancy analysis (RDA). Additionally, we may 
+be interested in how the raw abundance of seedlings change following 
+experimental manipulation, so we may wish to focus on the proportional 
+differences between treatments. The first case is handled naturally by 
+RDA. The second case will require some form of standardisation by 
+samples, say by sample totals.
+
+First, let's test the first null hypothesis; that there is no effect of 
+the treatment on seedling recruitment. This is a simple RDA. We should 
+take into account the `block` factor when we assess this model for 
+significance. How we do this illustrates two potential approaches to 
+performing permutation tests
+
+ 1. **design**-based permutations, where how the samples are permuted 
+ follows the experimental design, or
+ 
+ 2. **model**-based permutations, where the experimental design is 
+ included in the analysis directly and residuals are permuted by simple 
+ randomisation.
+
+There is an important difference between the two approach, one which 
+I'll touch on shortly.
+
+We'll proceed by fitting the model, conditioning on `block` to remove 
+between block differences
+
+```{r, fit-conditioned-rda}
+mod1 <- rda(spp ~ treatment + Condition(block), data = env)
+mod1
+```
+
+There is a strong single, linear gradient in the data as evidenced by 
+the relative magnitudes of the eigenvalues (here expressed as 
+proportions of the total variance)
+
+```{r, eigenvals}
+summary(eigenvals(mod1))
+```
+
+## Design-based permutations
+
+A *design*-based permutation test of these data would be one conditioned on the `block` variable, by restricting samples to be permuted only *within* the levels of `block`. In this situation, samples are never permuted between blocks, only within. We can set up this type of permutation design as follows
+
+```{r, how1}
+h <- with(env, how(blocks = block, nperm = 999))
+```
+
+Note that we could use the `plots` argument instead of `blocks` to 
+restrict the permutations in the same way, but using `blocks` is 
+simpler. I also set the required number of permutations for the test 
+here.
+
+`permutations` can take a number of different types of instruction
+
+ 1. an object of class `"how"`, whch contains details of a restricted 
+ permutation design that `shuffleSet()` from the **permute** package will use to generate permutations from, or
+ 
+ 2. a number indicating the number of permutations required, in which 
+ case these are simple randomisations with no restriction, unless the 
+ `strata` argument is used, or
+ 
+ 3. a matrix of user-specified permutations, 1 row per permutation.
+
+To perform the design-based permutation we'll pass `h`, created 
+earlier, to `anova()`
+
+```{r, anova1}
+set.seed(42)
+p1 <- anova(mod1, permutations = h, parallel = 3)
+p1
+```
+
+Note that I've run this on three cores in parallel; I have four cores on 
+my laptop but left one free for the other software I have running.
+
+The overall permutation test indicates no significant effect of 
+treatment on the abundance of seedlings. We can test individual axes by 
+adding `by = "axis"` to the `anova()` call
+
+```{r, anova1-by-axis}
+set.seed(24)
+p1axis <- anova(mod1, permutations = h, parallel = 3, by = "axis")
+p1axis
+```
+
+This confirms the earlier impression that there is a single, linear 
+gradient in the data set. A biplot shows that this axis of variation is 
+associated with the Moss (& Litter) removal treatment. The variation 
+between the other treatments lies primarily along axis two and is 
+substantially less than that associated with the Moss & Litter removal.
+
+```{r, biplot, fig = TRUE, fig.cap = "Figure 1: RDA biplot showing species scores and treatment centroids."}
+plot(mod1, display = c("species", "cn"), scaling = "sites", type = "n",
+     xlim = c(-10.5, 1.5))
+text(mod1, display = "species", scaling = 1, cex = 0.8)
+text(mod1, display = "cn", scaling = 1, col = "blue", cex = 1.2,
+     labels = c("Control", "Litter+Moss", "Litter", "Removal"))
+```
+
+In the above figure, I used `scaling = "sites:`, so-called *inter-sample 
+distance scaling*, as this best represents the centroid scores, which 
+are computed as the treatment-wise average of the sample scores.
+
+## Model-based permutation
+
+The alternative permutation approach, known as model-based 
+permutations, and would employ free permutation of residuals after the 
+effects of the covariables have been accounted for. This is justified 
+because under the null hypothesis, the residuals are freely 
+exchangeable once the effects of the covariables are removed. There is 
+a clear advantage of model-based permutations over design-based 
+permutations; where the sample size is small, as it is here, there 
+tends to be few blocks and the resulting design-based permutation test 
+relatively weak compared to the model-based version.
+
+It is simple to switch to model-based permutations, be setting the 
+blocks indicator in the permutation design to `NULL`, removing the 
+blocking structure from the design
+
+```{r, remove-blocks}
+setBlocks(h) <- NULL                    # remove blocking
+getBlocks(h)                            # confirm
+```
+
+Next we repeat the permutation test using the modified `h`
+
+```{r, model-anova1}
+set.seed(51)
+p2 <- anova(mod1, permutations = h, parallel = 3)
+p2
+```
+
+The estimated *p* value is slightly smaller now. The difference between 
+treatments is predominantly in the Moss & Litter removal with 
+differences between the control and the other treatments lying along 
+the insignificant axes
+
+```{r, model-anova-by-axis}
+set.seed(83)
+p2axis <- anova(mod1, permutations = h, parallel = 3, by = "axis")
+p2axis
+```
+
+## Chages in relative seedling composition
+
+As mentioned earlier, interest is also, perhaps predominantly, in whether any of the treatments have different species composition. To test this hypothesis we standardise by the sample (row) norm using `decostand()`. Alternatively we could have used `method = "total"` to work with proportional abundances (or `method = "hellinger"` or `method = "chi.square"`). We then repeat the earlier steps, this time using only model-based permutations owing to their greater power.
+
+```{r, standardised-fits}
+spp.norm <- decostand(spp, method = "normalize", MARGIN = 1)
+
+mod2 <- rda(spp.norm ~ treatment + Condition(block), data = env)
+mod2
+summary(eigenvals(mod2))
+
+set.seed(76)
+anova(mod2, permutations = h, parallel = 3)
+```
+
+The results suggest no difference in species composition under the experimental manipulation.
+
+## References
