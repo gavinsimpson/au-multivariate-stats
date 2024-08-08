@@ -34,7 +34,7 @@ To register for the course, please contact Julie Jensen on jsj@anivet.au.dk.
 
 * [Permutation test answers](https://gavinsimpson.github.io/au-multivariate-stats/computing/03-permutation-tests/permutation-tests-solutions.html)
 
-* [Randomized Complete Block example](https://gavinsimpson.github.io/au-multivariate-stats/computing/03-permutation-tests/randomized-complete-block.html)
+* [Randomised Complete Block example](https://gavinsimpson.github.io/au-multivariate-stats/computing/03-permutation-tests/randomised-complete-block.html)
 
 <!--
 * [Wednesday](https://gavinsimpson.github.io/au-multivariate-stats/slides/03-constrained-ordination/slides.html)
