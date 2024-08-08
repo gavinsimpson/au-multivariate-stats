@@ -298,6 +298,31 @@ If the split-plots are parallel time series & `time` is an autocorrelated error 
 
 ---
 
+# Split plot designs
+
+```{r sketch-1, echo = FALSE, out.width = "75%", fig.align = "center"}
+knitr::include_graphics("./resources/permutation-designs-sketch-1.png")
+```
+
+---
+
+# Split plot designs
+
+```{r sketch-2, echo = FALSE, out.width = "75%", fig.align = "center"}
+knitr::include_graphics("./resources/permutation-designs-sketch-2.png")
+```
+
+---
+
+# Split plot designs
+
+```{r sketch-3, echo = FALSE, out.width = "75%", fig.align = "center"}
+knitr::include_graphics("./resources/permutation-designs-sketch-3.png")
+```
+
+
+---
+
 # Mirrored permutations
 
 Mirroring in restricted permutations allows for isotropy in dependencies by reflecting the ordering of samples in time or spatial dimensions
