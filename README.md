@@ -2,21 +2,23 @@
 
 ### Aarhus University PhD Course
 
-* Autumn 2024 running: August 6<sup>th</sup> &ndash; 8<sup>th</sup>
+* Spring 2026 running: April 28<sup>th</sup> &ndash; 30<sup>th</sup>
 
 * ECTS credits: 1.5 ECTS
 
 * Language: English
 
-* Fee: 350 DKK
+* Fee: 400 DKK
 
 ## Name of course leader
 
 Gavin Simpson, Assistant Professor, Department of Animal and Veterinary Sciences, Aarhus University gavin@anivet.au.dk
 
-### Registration
+<!-- ### Registration
 
-To register for the course, please contact Julie Jensen on jsj@anivet.au.dk.
+To register for the course, please contact Julie Jensen on jsj@anivet.au.dk.>
+
+-->
 
 ### Slides
 
@@ -121,21 +123,21 @@ os             darwin20
 system         aarch64, darwin20
 status
 major          4
-minor          4.0
-year           2024
-month          04
-day            24
-svn rev        86474
+minor          5.3
+year           2026
+month          03
+day            11
+svn rev        89597
 language       R
-version.string R version 4.4.0 (2024-04-24)
-nickname       Puppy Cup
+version.string R version 4.5.3 (2026-03-11)
+nickname       Reassured Reassurer
 ```
 
-This should include `4.4.0` if you are running the latest release (at the time of writing), but should be no lower than `4.4.0`. If the installed version of R is < 4.4.0, install a newver version of R by downloading and running one of the installers from [cloud.r-project.org](https://cloud.r-project.org/) as mentioned above.
+This should include `4.5.3` if you are running the latest release (at the time of writing), but should be no lower than `4.5.0`. If the installed version of R is < 4.5.0, install a newer version of R by downloading and running one of the installers from [cloud.r-project.org](https://cloud.r-project.org/) as mentioned above.
 
 To check that RStudio is up-to-date, open RStudio, open the Help menu, and choose *Check for Updates*. RStudio will then check to see if there is a newer version available and if there is it will give you the option to download the newer version.
 
-Prior to arriving at AU Viborg on the 19th of September, make sure you have updated your installed R packages and that you have installed the following packages: tidyverse, vegan, mvabund, boral, ecoCopula, and cocorresp. To do this, open RStudio (or R) and in the console window (usually lower left, with a prompt that looks like `>`) run
+Prior to arriving at AU Viborg, make sure you have updated your installed R packages and that you have installed the following packages: tidyverse, vegan, mvabund, boral, ecoCopula, and cocorresp. To do this, open RStudio (or R) and in the console window (usually lower left, with a prompt that looks like `>`) run
 
 ```r
 nc <- parallel::detectCores(logical = FALSE)
