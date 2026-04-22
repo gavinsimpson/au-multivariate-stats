@@ -22,11 +22,11 @@ To register for the course, please contact Julie Jensen on jsj@anivet.au.dk.>
 
 ### Slides
 
-* [Monday](https://gavinsimpson.github.io/au-multivariate-stats/slides/01-dissimilarity-unconstrained-ordination/slides.html)
+* [Tuesday](https://gavinsimpson.github.io/au-multivariate-stats/slides/01-dissimilarity-unconstrained-ordination/slides.html)
 
-* [Tuesday](https://gavinsimpson.github.io/au-multivariate-stats/slides/02-constrained-ordination/slides.html)
+* [Wednesday](https://gavinsimpson.github.io/au-multivariate-stats/slides/02-constrained-ordination/slides.html)
 
-* [Wednesday](https://gavinsimpson.github.io/au-multivariate-stats/slides/03-permutation-tests/slides.html)
+* [Thursday](https://gavinsimpson.github.io/au-multivariate-stats/slides/03-permutation-tests/slides.html)
 
 * [Other stuff](https://gavinsimpson.github.io/au-multivariate-stats/slides/04-other-stuff/slides.html)
 
