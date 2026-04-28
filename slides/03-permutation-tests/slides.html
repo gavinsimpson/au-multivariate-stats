@@ -20,7 +20,7 @@ class: inverse, middle, left, my-title-slide, title-slide
 ### Gavin L. Simpson
 ]
 .date[
-### August 8th, 2024
+### April 28–30th, 2026
 ]
 
 ---
@@ -94,7 +94,7 @@ summary(pstat)
 ```
 ## 
 ##       statistic    SES   mean lower median  upper Pr(perm)  
-## Model    1.4441 2.0664 1.0316       1.0123 1.3856    0.034 *
+## Model    1.4441 2.1289 1.0250       1.0089 1.3926    0.032 *
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
@@ -182,7 +182,7 @@ Trick is to shuffle the data whilst preserving that dependence
 
 # Restricted permutations
 
-Canoco has had restricted permutations for a *long* time. *vegan* has only recently caught up &amp; we're not (quite) there yet
+Canoco has had restricted permutations for a *long* time. *vegan* mostly caught up but we're not (quite) there yet
 
 *vegan* used to only know how to completely randomise data or completely randomise within blocks (via `strata` in *vegan*)
 
@@ -708,13 +708,10 @@ biplot(m.pca, type = c("text", "points"), scaling = "species")
 set.seed(23)
 ev.pca &lt;- envfit(m.pca ~ Watershed, data = design, scaling = "species")
 plot(ev.pca, labels = levels(design$Watershed), add = FALSE)
-```
-
-``` r
 layout(1)
 ```
 .center[
-&lt;img src="slides_files/figure-html/crayfish-pca-plot-1.svg" width="75%" /&gt;
+&lt;img src="slides_files/figure-html/crayfish-pca-plot-1.svg" alt="" width="75%" /&gt;
 ]
 
 ---
@@ -980,16 +977,15 @@ ctrl &lt;- how(nperm = 499, within = Within(type = "free"),
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
-
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script src="macros.js"></script>
 <script>var slideshow = remark.create({
-"highlightStyle": "github",
-"highlightLines": true,
-"countIncrementalSlides": false,
-"ratio": "16:9"
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "countIncrementalSlides": false,
+  "ratio": "16:9"
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));

@@ -1,7 +1,7 @@
 ---
 title: "Dissimilarity & Unconstrained ordination"
 author: "Gavin Simpson"
-date: "August 6, 2024"
+date: "April 28--30th, 2026"
 output:
   xaringan::moon_reader:
     css: ['default', 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css', 'slides.css']
@@ -21,18 +21,18 @@ options(htmltools.dir.version = FALSE)
 knitr::opts_chunk$set(cache = FALSE, dev = 'svg', echo = FALSE, message = FALSE, warning = FALSE,
                       fig.height=6, fig.width = 1.777777*6)
 
-library('vegan')
-library('tibble')
-library('mvnfast')
-library('dplyr')
-library('tidyr')
-library('ggplot2')
-library('gganimate')
-library('analogue')
+library("vegan")
+library("tibble")
+library("mvnfast")
+library("dplyr")
+library("tidyr")
+library("ggplot2")
+library("gganimate")
+library("analogue")
 data(varespec, varechem)
 
 ## plot defaults
-theme_set(theme_minimal(base_size = 16, base_family = 'Fira Sans'))
+theme_set(theme_minimal(base_size = 16, base_family = "Fira Sans"))
 ```
 
 # Welcome
@@ -40,6 +40,8 @@ theme_set(theme_minimal(base_size = 16, base_family = 'Fira Sans'))
 ---
 
 # Logistics
+
+### Course topics
 
 * Dissimilarity & unconstrained ordination
 * Constrained ordination
@@ -310,6 +312,7 @@ The species could be absent for different reasons
 
 * too hot in $i$ and too cold in $j$
 * too dry in $i$ and to wet in $j$
+
 ---
 
 # Double zero problem
@@ -470,7 +473,7 @@ First we look for major variation, then relate it to environmental variation
 
 vs. *constrained* ordination, where we only want to see what can be explained by environmental variables of interest
 
-*How well do we explain the main patterns in the species data*? vs *How large are the patterns we can expain with the measured data*?
+*How well do we explain the main patterns in the species data*? vs *How large are the patterns we can explain with the measured data*?
 
 ---
 
@@ -1028,7 +1031,7 @@ Use the text names instead:
 
 * `scaling = "none"` means `scaling = 0`
 * `scaling = "sites"` means `scaling = 1`
-* `scaling = "species"` means `scaling = 3`
+* `scaling = "species"` means `scaling = 2`
 * `scaling = "symmetric"` means `scaling = 3`
 
 For PCA (`rda()`) use `correlation = TRUE` to get the correlation scores (negative scaling)
@@ -1061,7 +1064,7 @@ head(scores(pca, choices = 1:3, display = "species", scaling = "species", correl
 .col-6[
 
 ```{r ca_biplot, fig.width=8, fig.height=8, echo = TRUE, dev.args = list(pointsize = 14)}
-plot(ca1, choices = c(1,3),
+plot(ca1, choices = c(1, 3),
      scaling = "symmetric")
 ```
 
@@ -1979,8 +1982,8 @@ ford <- fortify(ord, axes = 1:2)
 head(ford, 4)
 
 blue <- "#025196"
-filter(ford, score == "sites") %>%
-    ggplot(aes(x = PC1, y = PC2)) +
+filter(ford, score == "sites") |>
+    ggplot(aes(x = pc1, y = pc2)) +
     geom_hline(yintercept = 0, colour = blue) +
     geom_vline(xintercept = 0, colour = blue) +
     geom_point() +

@@ -20,7 +20,7 @@ class: inverse, middle, left, my-title-slide, title-slide
 ### Gavin L. Simpson
 ]
 .date[
-### August 7th, 2024
+### April 28–30th, 2026
 ]
 
 ---
@@ -276,8 +276,8 @@ To extract a range of scores from  a fitted ordination use `scores()`
 # Extracting axis scores
 
 
-```r
-str(scores(cca1, choices = 1:4, display = c("species","sites")), max = 1)
+``` r
+str(scores(cca1, choices = 1:4, display = c("species", "sites")), max = 1)
 ```
 
 ```
@@ -288,7 +288,7 @@ str(scores(cca1, choices = 1:4, display = c("species","sites")), max = 1)
 ##   ..- attr(*, "dimnames")=List of 2
 ```
 
-```r
+``` r
 head(scores(cca1, choices = 1:2, display = "sites"))
 ```
 
@@ -334,7 +334,7 @@ scores(cca1, choices = 1:2, display = "species", scaling = 3)
 
 # Scalings&amp;hellip;
 
-Thankfully we can use alternative descrpitors to extract scores:
+Thankfully we can use alternative descriptors to extract scores:
 
 - `"none"`
 - `"sites"`
@@ -632,6 +632,7 @@ mods2
 ```
 
 ```
+## 
 ## Call: cca(formula = varespec ~ P + K + Mg + S + Mn + Mo + Baresoil +
 ## Humdepth, data = varechem)
 ## 
@@ -639,7 +640,8 @@ mods2
 ## Total          2.0832     1.0000     
 ## Constrained    1.1165     0.5360    8
 ## Unconstrained  0.9667     0.4640   15
-## Inertia is scaled Chi-square 
+## 
+## Inertia is scaled Chi-square
 ## 
 ## Eigenvalues for constrained axes:
 ##   CCA1   CCA2   CCA3   CCA4   CCA5   CCA6   CCA7   CCA8 
@@ -1233,10 +1235,10 @@ m5$anova
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script src="macros.js"></script>
 <script>var slideshow = remark.create({
-"highlightStyle": "github",
-"highlightLines": true,
-"countIncrementalSlides": false,
-"ratio": "16:9"
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "countIncrementalSlides": false,
+  "ratio": "16:9"
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));

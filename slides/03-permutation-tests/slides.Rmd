@@ -1,7 +1,7 @@
 ---
 title: "Permutation tests"
 author: Gavin L. Simpson
-date: August 8th, 2024
+date: "April 28--30th, 2026"
 fontsize: 10pt
 classoption: "compress, aspectratio=169"
 bibliography: "resources/vegan-refs.bib"
@@ -159,7 +159,7 @@ Trick is to shuffle the data whilst preserving that dependence
 
 # Restricted permutations
 
-Canoco has had restricted permutations for a *long* time. *vegan* has only recently caught up & we're not (quite) there yet
+Canoco has had restricted permutations for a *long* time. *vegan* mostly caught up but we're not (quite) there yet
 
 *vegan* used to only know how to completely randomise data or completely randomise within blocks (via `strata` in *vegan*)
 
@@ -673,4 +673,3 @@ ctrl <- how(nperm = 499, within = Within(type = "free"),
             blocks = with(design, Reach))
 (sig.run <- anova(m.run, permutations = ctrl))
 ```
-

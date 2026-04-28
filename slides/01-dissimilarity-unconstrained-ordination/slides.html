@@ -4,7 +4,6 @@
     <title>Dissimilarity &amp; Unconstrained ordination</title>
     <meta charset="utf-8" />
     <meta name="author" content="Gavin Simpson" />
-    <meta name="date" content="2024-08-06" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css" />
@@ -21,7 +20,7 @@ class: inverse, middle, left, my-title-slide, title-slide
 ### Gavin Simpson
 ]
 .date[
-### August 6, 2024
+### April 28–30th, 2026
 ]
 
 ---
@@ -35,6 +34,8 @@ class: inverse middle center big-subsection
 ---
 
 # Logistics
+
+### Course topics
 
 * Dissimilarity &amp; unconstrained ordination
 * Constrained ordination
@@ -96,7 +97,7 @@ Relative abundance expresses the abundance of each species as its proportion out
 
 # Data box
 
-&lt;img src="./resources/data-box-cropped.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="./resources/data-box-cropped.png" alt="" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -255,7 +256,7 @@ Gower's coefficient
 
 # Double zero problem
 
-&lt;img src="./resources/response-curve.png" width="90%" style="display: block; margin: auto;" /&gt;
+&lt;img src="./resources/response-curve.png" alt="" width="90%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -273,6 +274,7 @@ The species could be absent for different reasons
 
 * too hot in `\(i\)` and too cold in `\(j\)`
 * too dry in `\(i\)` and to wet in `\(j\)`
+
 ---
 
 # Double zero problem
@@ -443,7 +445,7 @@ First we look for major variation, then relate it to environmental variation
 
 vs. *constrained* ordination, where we only want to see what can be explained by environmental variables of interest
 
-*How well do we explain the main patterns in the species data*? vs *How large are the patterns we can expain with the measured data*?
+*How well do we explain the main patterns in the species data*? vs *How large are the patterns we can explain with the measured data*?
 
 ---
 
@@ -624,12 +626,14 @@ pca
 ```
 
 ```
+## 
 ## Call: rda(X = decostand(varespec, method = "hellinger"), scale = TRUE)
 ## 
 ##               Inertia Rank
 ## Total              44     
 ## Unconstrained      44   23
-## Inertia is correlations 
+## 
+## Inertia is correlations
 ## 
 ## Eigenvalues for unconstrained axes:
 ##   PC1   PC2   PC3   PC4   PC5   PC6   PC7   PC8 
@@ -649,12 +653,14 @@ rda(decostand(varespec, method = "hellinger"), scale = FALSE)
 ```
 
 ```
+## 
 ## Call: rda(X = decostand(varespec, method = "hellinger"), scale = FALSE)
 ## 
 ##               Inertia Rank
 ## Total          0.3647     
 ## Unconstrained  0.3647   23
-## Inertia is variance 
+## 
+## Inertia is variance
 ## 
 ## Eigenvalues for unconstrained axes:
 ##     PC1     PC2     PC3     PC4     PC5     PC6     PC7     PC8 
@@ -674,7 +680,7 @@ How **vegan** scales the eigenvalues is different to *Canoco*
 biplot(pca, scaling = "symmetric")
 ```
 
-&lt;img src="slides_files/figure-html/vare-pca-1c-1.svg" width="95%" /&gt;
+&lt;img src="slides_files/figure-html/vare-pca-1c-1.svg" alt="" width="95%" /&gt;
 
 ---
 
@@ -871,12 +877,14 @@ ca1
 ```
 
 ```
+## 
 ## Call: cca(X = varespec)
 ## 
 ##               Inertia Rank
 ## Total           2.083     
 ## Unconstrained   2.083   23
-## Inertia is scaled Chi-square 
+## 
+## Inertia is scaled Chi-square
 ## 
 ## Eigenvalues for unconstrained axes:
 ##    CA1    CA2    CA3    CA4    CA5    CA6    CA7    CA8 
@@ -917,7 +925,7 @@ Use the text names instead:
 
 * `scaling = "none"` means `scaling = 0`
 * `scaling = "sites"` means `scaling = 1`
-* `scaling = "species"` means `scaling = 3`
+* `scaling = "species"` means `scaling = 2`
 * `scaling = "symmetric"` means `scaling = 3`
 
 For PCA (`rda()`) use `correlation = TRUE` to get the correlation scores (negative scaling)
@@ -962,7 +970,7 @@ head(scores(pca, choices = 1:3, display = "species", scaling = "species", correl
 
 
 ``` r
-plot(ca1, choices = c(1,3),
+plot(ca1, choices = c(1, 3),
      scaling = "symmetric")
 ```
 
@@ -1250,10 +1258,10 @@ A goodness of fit statistic `\(g_i\)` can be computed for the observations; defi
 ```
 
 ```
-##  [1] 0.0008559796 0.0014569292 0.0006071222 0.0010337685 0.0008109554
-##  [6] 0.0006932209 0.0009813765 0.0007284320 0.0007316829 0.0009052744
-## [11] 0.0004102242 0.0004846332 0.0008688444 0.0011563520 0.0013120348
-## [16] 0.0007051008 0.0008226499 0.0005374015 0.0008933316 0.0006139805
+##  [1] 0.0008465706 0.0014496074 0.0005970345 0.0010590591 0.0008307856
+##  [6] 0.0006913388 0.0010005024 0.0007252496 0.0007141225 0.0009208506
+## [11] 0.0003878840 0.0004951200 0.0008869459 0.0011635470 0.0013137452
+## [16] 0.0006894673 0.0008147213 0.0005572943 0.0008889747 0.0006099458
 ```
 
 ``` r
@@ -1261,7 +1269,7 @@ sum(g^2)
 ```
 
 ```
-## [1] 1.513378e-05
+## [1] 1.522324e-05
 ```
 
 ``` r
@@ -1269,7 +1277,7 @@ sol$stress^2
 ```
 
 ```
-## [1] 1.513378e-05
+## [1] 1.522324e-05
 ```
 
 ``` r
@@ -1649,7 +1657,7 @@ In 1 we would C is downregulated &amp; A, B, D, &amp; E are upregulated
 
 .col-4[
 
-![](resources/chap7-rnaseq-normalization-1.png)&lt;!-- --&gt;
+&lt;img src="resources/chap7-rnaseq-normalization-1.png" alt="" width="667" /&gt;
 
 .smaller[Holmes &amp; Huber (2019) Modern Statistics for Modern Biology]
 ]
@@ -1677,7 +1685,7 @@ This transforms counts to a log&lt;sub&gt;2&lt;/sub&gt;-like scale via a simple 
 
 `$$\log_2(q_{ij}) = \sum_k x_{jk} \beta_{ik}$$`
 
-where `\(q_{ij}\)` are the transformed data and `\(x_{jk}\)` is a particular design matrix with a dummy variable for the `\(j\)`th sample for ($i = {1, 2, \dots m}$ variables)
+where `\(q_{ij}\)` are the transformed data and `\(x_{jk}\)` is a particular design matrix with a dummy variable for the `\(j\)`th sample for (`\(i = {1, 2, \dots m}\)` variables)
 
 Priors on the `\(\beta_{ik}\)` make the model identifiable
 
@@ -1691,7 +1699,7 @@ The _rlog_ transformation is ~ variance stabilizing, but handles highly varying 
 
 Comparison of three transformations
 
-![](resources/chap7-rnaseq-meansd-1.png)&lt;!-- --&gt;
+&lt;img src="resources/chap7-rnaseq-meansd-1.png" alt="" width="2667" /&gt;
 
 .smaller[Holmes &amp; Huber (2019) Modern Statistics for Modern Biology]
 
@@ -2033,17 +2041,19 @@ head(ford, 4)
 ```
 
 ```
-##     score    label         PC1         PC2
-## 1 species Achimill  0.22413552 -0.05704791
-## 2 species Agrostol -0.41424457  0.18006829
-## 3 species Airaprae  0.03506944 -0.15464367
-## 4 species Alopgeni -0.13865500  0.31844362
+## # A tibble: 4 × 4
+##   score   label        pc1     pc2
+##   &lt;fct&gt;   &lt;chr&gt;      &lt;dbl&gt;   &lt;dbl&gt;
+## 1 species Achimill  0.224  -0.0570
+## 2 species Agrostol -0.414   0.180 
+## 3 species Airaprae  0.0351 -0.155 
+## 4 species Alopgeni -0.139   0.318
 ```
 
 ``` r
 blue &lt;- "#025196"
-filter(ford, score == "sites") %&gt;%
-    ggplot(aes(x = PC1, y = PC2)) +
+filter(ford, score == "sites") |&gt;
+    ggplot(aes(x = pc1, y = pc2)) +
     geom_hline(yintercept = 0, colour = blue) +
     geom_vline(xintercept = 0, colour = blue) +
     geom_point() +
@@ -2060,10 +2070,10 @@ filter(ford, score == "sites") %&gt;%
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script src="macros.js"></script>
 <script>var slideshow = remark.create({
-"highlightStyle": "github",
-"highlightLines": true,
-"countIncrementalSlides": false,
-"ratio": "16:9"
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "countIncrementalSlides": false,
+  "ratio": "16:9"
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));
