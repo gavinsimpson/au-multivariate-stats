@@ -446,7 +446,7 @@ The word "ordination" comes from the German word "ordnung"
 
 # Ordination
 
-Putting things in order is exactly what we we do in ordination
+Putting things in order is exactly what we do in ordination
 
 * we arrange our samples along gradients by fitting lines and planes through the data that describe the main patterns in those data
 
