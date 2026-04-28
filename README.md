@@ -10,15 +10,24 @@
 
 * Fee: 400 DKK
 
-## Name of course leader
+## Course leader
 
 Gavin Simpson, Assistant Professor, Department of Animal and Veterinary Sciences, Aarhus University gavin@anivet.au.dk
 
-<!-- ### Registration
+## Getting started
 
-To register for the course, please contact Julie Jensen on jsj@anivet.au.dk.>
+To download the materials for the course, do the following:
 
--->
+1. Create a new directory (folder) on your computer where you want to store the course materials. You must have read/write permissions on this location and avoid placing it on a shared drive (i.e. no OneDrive or GoogleDrive folders),
+2. Start RStudio (or the R editor of you choice),
+    * If using RStudio, use the Files pane to navigate to the folder you created. Once you have the right folder open in the Files pane, click on the More entry in the toolbar for the Files pane, and select `Set As Working Directory`.
+    * If using some other editor, set your working directory to the folder you created.
+3. In the R console, run `install.packages("usethis")`,
+4. As long as you have set the working directory to the new folder you created for the materials, you can now run
+
+    usethis::use_course("gavinsimpson/au-multivariate-stats", destdir = "./")
+
+   This will download the course materials to the folder, and it will start a new RStudio session in this working directory.
 
 ### Slides
 
@@ -137,7 +146,7 @@ This should include `4.5.3` if you are running the latest release (at the time o
 
 To check that RStudio is up-to-date, open RStudio, open the Help menu, and choose *Check for Updates*. RStudio will then check to see if there is a newer version available and if there is it will give you the option to download the newer version.
 
-Prior to arriving at AU Viborg, make sure you have updated your installed R packages and that you have installed the following packages: tidyverse, vegan, mvabund, boral, ecoCopula, and cocorresp. To do this, open RStudio (or R) and in the console window (usually lower left, with a prompt that looks like `>`) run
+Prior to arriving at AU Viborg, make sure you have updated your installed R packages and that you have installed the following packages: tidyverse, vegan, and ggvegan. To do this, open RStudio (or R) and in the console window (usually lower left, with a prompt that looks like `>`) run
 
 ```r
 nc <- parallel::detectCores(logical = FALSE)
@@ -154,5 +163,5 @@ Change the value of `Ncpus` to the number cores you have on your computer as thi
 Now we can install the required packages
 
 ```r
-install.packages(c("tidyverse", "vegan"))
+install.packages(c("tidyverse", "vegan", "ggvegan"))
 ```
