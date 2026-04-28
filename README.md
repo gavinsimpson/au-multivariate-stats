@@ -42,6 +42,8 @@ To download the materials for the course, do the following:
 
 ### Examples
 
+* [Unconstrained ordination](https://gavinsimpson.github.io/au-multivariate-stats/computing/01-unconstrained-ordination/unconstrained-ordination.html)
+
 * [Permutation test questions](https://gavinsimpson.github.io/au-multivariate-stats/computing/03-permutation-tests/permutation-tests.html)
 
 * [Permutation test answers](https://gavinsimpson.github.io/au-multivariate-stats/computing/03-permutation-tests/permutation-tests-solutions.html)
