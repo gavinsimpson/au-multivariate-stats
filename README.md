@@ -25,7 +25,7 @@ To download the materials for the course, do the following:
 3. In the R console, run `install.packages("usethis")`,
 4. As long as you have set the working directory to the new folder you created for the materials, you can now run
 
-    usethis::use_course("gavinsimpson/au-multivariate-stats", destdir = "./")
+       usethis::use_course("gavinsimpson/au-multivariate-stats", destdir = "./")
 
    This will download the course materials to the folder, and it will start a new RStudio session in this working directory.
 
