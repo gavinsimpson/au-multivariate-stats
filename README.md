@@ -164,5 +164,5 @@ Change the value of `Ncpus` to the number cores you have on your computer as thi
 Now we can install the required packages
 
 ```r
-install.packages(c("tidyverse", "vegan", "ggvegan"))
+install.packages(c("tidyverse", "vegan", "ggvegan", "rmarkdown", "knitr"))
 ```
