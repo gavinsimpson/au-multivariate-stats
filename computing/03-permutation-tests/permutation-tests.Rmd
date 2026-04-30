@@ -9,6 +9,19 @@ output: html_document
 
 Below, you'll find several examples of experimental designs or other multivariate data sets that we wish to test using constrained ordination methods and restricted permutation (Monte Carlo) tests.
 
+Begin by loading the packages needed:
+
+```{r, warning=FALSE}
+library("vegan")
+library("permute")
+library("readr")
+library("tidyr")
+library("dplyr")
+library("tibble")
+library("forcats")
+library("stringr")
+```
+
 # Ectomycorrhizal fungi
 
 In this example we will study the effect of sod-cutting and sod-addition on the number of sporocarps of ectomycorrhizal fungi in Pine stands differing in age and soil type using data from an experiment reported in Baar & Ter Braak (1996). The experimental layout is as follows. Six stands (St1&ndash;St6) with Scots pine of different age and soil type were selected. Within each stand, plots were laid out, with a size of 15 m x 15 m. Treatments applied to stands were:
@@ -22,15 +35,6 @@ In this example we will study the effect of sod-cutting and sod-addition on the 
 Treatment `A` (sod addition) was not done in the oldest two stands (`St5` and `St6`) as these were the oldest stands and already had thick layers of humus and litter. The treatments were replicated 4 times each, hence in the younger stands we have 12 plots (4 replicates by 3 treatments), while in the oldest stands we have 8 plots each (4 replicates by 2 treatments). Within stands, treatments were randomized.
 
 ```{r}
-library("vegan")
-library("permute")
-library("readr")
-library("tidyr")
-library("dplyr")
-library("tibble")
-library("forcats")
-library("stringr")
-
 fungi <- read_csv(url("https://bit.ly/fungi-spp"), skip = 1L,
     col_types = "-cddddddddddddddddddddddddddddddddddd") %>%
     mutate(across(Amangemm:Xerosubt, ~ replace_na(.x, 0))) %>%
@@ -121,7 +125,6 @@ For this example we'll look only at the effect of pH on wetland plant abundance 
 ## Plots in a rectangular spatial layout
 
 ```{r}
-
 grid_veg <- read_csv(url("https://bit.ly/grid-veg"),
     skip = 1L) %>%
     mutate(across(ACHILMIL:`POPUL-SP`, ~ replace_na(.x, 0))) %>%

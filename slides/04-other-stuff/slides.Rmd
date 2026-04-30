@@ -746,7 +746,7 @@ Two commonly encountered ones are
 # Compositional data &mdash; ALR transformations
 
 $$
-\text{ALR}(j) | \text{ref} = \log(x_j / x_{\text{ref}}), \; j \in {1, \dots, D}
+\text{ALR}(j) | \text{ref} = \log(x_j / x_{ \text{ref} }) \; j \in \{1, \dots, D\}
 $$
 
 There are $D$ possible ALR transformations, depending on the choice of *reference* composition / part
