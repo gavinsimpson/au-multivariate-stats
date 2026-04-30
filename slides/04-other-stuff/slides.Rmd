@@ -745,11 +745,9 @@ Two commonly encountered ones are
 
 # Compositional data &mdash; ALR
 
-$$
-\text{ALR}(j) | R = \log \left( \frac{x_j}{x_R} \right) \; j \in \{1, \dots, D\}
-$$
+$$\text{ALR}(j) | \text{ref} = \log \left( \frac{x_j}{x_{\text{ref}}} \right) \; j \in \{1, \dots, D\}$$
 
-There are $D$ possible ALR transformations, depending on the choice of *reference* composition / part ($R$)
+There are $D$ possible ALR transformations, depending on the choice of *reference* composition / part ($x_{\text{ref}}$)
 
 Choose one of the variables in the simplex as the reference part against which all other variables are normalised
 
@@ -763,15 +761,11 @@ In wide data, $p \gg n$, it is often the case that a suitable low-variance refer
 
 Instead of defining a reference, the CLR normalises by the **geometric** mean of the data for the $i$ th sample
 
-$$
-\text{CLR}(j) = \log(x_j / g(\mathbf{x})), \; j \in \{1, \dots, D\}
-$$
+$$\text{CLR}(j) = \log(x_j / g(\mathbf{x})), \; j \in \{1, \dots, D\}$$
 
 The *geometric* mean of the $i$ th observation is the mean of
 
-$$
-\frac{1}{D} \sum_{j=1}^D \log(x_j)
-$$
+$$\frac{1}{D} \sum_{j=1}^D \log(x_{ji})$$
 
 The CLR has the nice property that Euclidean distances among samples that are CLR transformed are equal to the distances using all possible logratios &mdash; *isometric*
 
