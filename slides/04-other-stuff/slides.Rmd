@@ -494,9 +494,48 @@ intersetcor(mods)
 Vector fitting (`envfit()`) or biplot scores (`scores(model, display = "bp")`) are better alternatives
 
 ---
-class: inverse middle center big-subsection
 
-# High-throughput data
+# Rarefaction
+
+Species richness increases with sample size (effort)
+
+Rarefaction gives the expected number of species rarefied from $N$ to $n$ individuals
+
+$$\hat{S}_n = \sum_{i=1}^S (1 - q_i) \; \mathsf{where} \; q_i = \frac{\binom{N - x_i}{n}}{\binom{N}{n}}$$
+
+$x_i$ is count of species $i$ and $\binom{N}{n}$ is a binomial coefficient &mdash; the number of ways to choose $n$ from $N$
+
+---
+
+# Rarefaction
+
+.row[
+.col-6[
+```{r rarefy, echo = TRUE, fig.show = "hide"}
+data(BCI, package = "vegan")
+rs <- rowSums(BCI)
+quantile(rs)
+
+Srar <- rarefy(BCI, min(rs))
+head(Srar)
+
+rarecurve(BCI, sample = min(rs))
+```
+]
+
+.col-6[
+```{r rarefy, echo = FALSE, fig.height = 6, fig.width = 6, dev.args = list(pointsize = 14), results = "hide"}
+```
+]
+]
+
+---
+
+# Rarefaction
+
+With rarefaction we can be accused of throwing away data
+
+Yet we need to do something about the often large differences in variances of species and samples owing to sampling effort
 
 ---
 
@@ -581,7 +620,7 @@ Can construct variance stabilizing transformations for other distributions
 
 High-throughput count data typically show extra-Poisson variation
 
-`DESeq2::varianceStabilizingTransformation()`
+`DESeq2::vst()` 
 
 ---
 
@@ -597,7 +636,7 @@ Priors on the $\beta_{ik}$ make the model identifiable
 
 The _rlog_ transformation is ~ variance stabilizing, but handles highly varying size factors across samples
 
-`DESeq2::rlogTransformation()`
+`DESeq2::rlog()`
 
 ---
 
@@ -675,6 +714,86 @@ Be careful though as this is a random process &mdash; what if you took a differe
 Repeat that many times and then as your dissimilarity $d_{ij}$, take the average of the many $d_{ij}^*$ values you generated above
 
 See also the help page for other suggestions `?avgdist`
+
+---
+
+# Compositional data
+
+Aitchison's *logratio* approach
+
+Classic statistical treatment for compositional data
+
+Compositional data are $D$ dimensional observations that lie on a $d = D - 1$ dimensional simplex
+
+Compositional data are defiend by a sample total
+
+Proportions of *sand*, *silt*, & *clay*; 3 dimensional data but once you know two of them, the third value is fixed
+
+---
+
+# Compositional data &mdash; transformations
+
+Many compositional transformations based on ratios of logs or *logratios*
+
+Two commonly encountered ones are
+
+* Additive logratio (ALR) transformation
+
+* Centred logratio (CLR) transformation
+
+---
+
+# Compositional data &mdash; ALR transformations
+
+$$
+\text{ALR}(j) | \text{ref} = \log(x_j / x_{\text{ref}}), \; j \in {1, \dots, D}
+$$
+
+There are $D$ possible ALR transformations, depending on the choice of *reference* composition / part
+
+Choose one of the variables in the simplex as the reference part against which all other variables are normalised
+
+The choice of the reference part can affect the success of the transformation; choose a reference part that varies little across the samples
+
+In wide data, $p \gg n$, it is often the case that a suitable low-variance reference can be found
+
+---
+
+# Compositional data &mdash; CLR transformations
+
+Instead of defining a reference, the CLR normalises by the **geometric** mean of the data for the $i$th sample
+
+$$
+\text{CLR}(j) = \log(x_j / g(\mathbf{x})), \; j \in {1, \dots, D}
+$$
+
+The *geometric* mean of the $i$th observation is the mean of
+
+$$
+\frac{1}{D} \sum_{j = 1}^D \log(x_{ji})
+$$
+
+The CLR has the nice property that Euclidean distances among samples that are CLR transformed are equal to the distances using all possible logratios &mdash; *isometric*
+
+---
+
+# Compositional data transformations
+
+A problem with the ALR and CLR transformations occurs when $x_{ij} = 0$
+
+To address, any 0s are replaced by a *pseudocount*, some small value that is specified by the user
+
+Typically the pseudocount is the smallest non-zero value in the observed data
+
+---
+
+# Compositional data transformations
+
+Now available in *vegan* via `decostand()`
+
+* `method = "alr", pseudocount = 1`
+
+* `method = "clr", pseudocount = 1`
 
 ---
 
