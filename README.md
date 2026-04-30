@@ -54,6 +54,8 @@ To download the materials for the course, do the following:
 
 * [Randomised Complete Block example](https://gavinsimpson.github.io/au-multivariate-stats/computing/03-permutation-tests/randomised-complete-block.html)
 
+* [Microbiome example](https://gavinsimpson.github.io/au-multivariate-stats/computing/04-other-stuff/baxter-otus.html)
+
 <!--
 * [Wednesday](https://gavinsimpson.github.io/au-multivariate-stats/slides/03-constrained-ordination/slides.html)
 

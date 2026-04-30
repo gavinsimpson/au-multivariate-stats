@@ -12,13 +12,14 @@ options(htmltools.dir.version = FALSE)
 knitr::opts_chunk$set(cache = TRUE, dev = 'svg', echo = TRUE, message = FALSE, warning = FALSE, fig.height=6, fig.width = 1.777777*6)
 ```
 
-In this example, we will use 
+In this example, we will use a data set from Baxter *et al* (2016; *Genome Medicine*), who investigated the use of non-invasive tests for colorectal cancer. They studied the microbiomes of a number of patients and investigated whether there were detectable differences in microbial composition in stool samples between patients with cancer, versus adenomas, versus healthy individuals.
+
+Load the packages we will use and the OTU data:
 
 ```{r load-baxter}
-# load vegan, dplyr & readr
+# load vegan, dplyr
 library("vegan")
 library("dplyr")
-library("readr")
 
 # load the data
 baxter <- read.table(
@@ -29,14 +30,15 @@ baxter <- read.table(
 
 We need to remove the first three columns of the data as provided:
 
-```
+```{r}
 baxter <- baxter |>
   as_tibble() |>
   select(-c(label:numOtus))
 ```
 
 There are 490 samples and 335 OTUs in the data:
-```
+
+```{r}
 dim(baxter)
 ```
 
@@ -83,13 +85,13 @@ We begin by converting the data to proportions
 baxter_prop <- baxter |> decostand(method = "total")
 ```
 
-and then to stabilise the variance of the data we could use a square root transform, but we follow Greenacre *et al* and use a quarter root transform
+and then to stabilise the variance of the data we could use a square root transform, but we follow Greenacre (2021; *Annual Review of Statistics and its Applications*) and use a quarter root transformation
 
 ```{r}
 baxter_qroot <- baxter_prop^0.25
 ```
 
-The aim of this brief example is to explore the effects of `dx` and `std_Age` on the OTU composition. We can fit this model using
+The aim of this brief example is to explore the effects of `dx` (diagnosis) and `std_Age` on the OTU composition. We can fit this model using
 
 ```{r}
 baxter_cca <- cca(baxter_qroot ~ dx + std_Age, data = meta)
@@ -160,7 +162,7 @@ To look at the CLR transformation, we start with the original data, `baxter` and
 
 ```{r}
 pseudo <- min(baxter_prop[baxter_prop > 0])
-baxter_clr <- baxter_prop |> 
+baxter_clr <- baxter_prop |>
   decostand(method = "clr", pseudocount = pseudo)
 baxter_clr <- baxter_clr[-371, ]
 ```
