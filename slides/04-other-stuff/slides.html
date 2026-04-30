@@ -916,34 +916,34 @@ Two commonly encountered ones are
 
 ---
 
-# Compositional data &amp;mdash; ALR transformations
+# Compositional data &amp;mdash; ALR
 
 $$
-\text{ALR}(j) | \text{ref} = \log(x_j / x_{ \text{ref} }) \; j \in \{1, \dots, D\}
+\text{ALR}(j) | R = \log \left( \frac{x_j}{x_R} \right) \; j \in \{1, \dots, D\}
 $$
 
-There are `\(D\)` possible ALR transformations, depending on the choice of *reference* composition / part
+There are `\(D\)` possible ALR transformations, depending on the choice of *reference* composition / part (`\(R\)`)
 
 Choose one of the variables in the simplex as the reference part against which all other variables are normalised
 
-The choice of the reference part can affect the success of the transformation; choose a reference part that varies little across the samples
+The reference part can affect the success of the transformation; choose a reference part that varies little across the samples
 
 In wide data, `\(p \gg n\)`, it is often the case that a suitable low-variance reference can be found
 
 ---
 
-# Compositional data &amp;mdash; CLR transformations
+# Compositional data &amp;mdash; CLR
 
-Instead of defining a reference, the CLR normalises by the **geometric** mean of the data for the `\(i\)`th sample
-
-$$
-\text{CLR}(j) = \log(x_j / g(\mathbf{x})), \; j \in {1, \dots, D}
-$$
-
-The *geometric* mean of the `\(i\)`th observation is the mean of
+Instead of defining a reference, the CLR normalises by the **geometric** mean of the data for the `\(i\)` th sample
 
 $$
-\frac{1}{D} \sum_{j = 1}^D \log(x_{ji})
+\text{CLR}(j) = \log(x_j / g(\mathbf{x})), \; j \in \{1, \dots, D\}
+$$
+
+The *geometric* mean of the `\(i\)` th observation is the mean of
+
+$$
+\frac{1}{D} \sum_{j=1}^D \log(x_j)
 $$
 
 The CLR has the nice property that Euclidean distances among samples that are CLR transformed are equal to the distances using all possible logratios &amp;mdash; *isometric*
